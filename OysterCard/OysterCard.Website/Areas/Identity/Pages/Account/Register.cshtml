@@ -1,0 +1,47 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserRegisterVm.Email"></label>
+                <input asp-for="UserRegisterVm.Email" class="form-control" />
+                <span asp-validation-for="UserRegisterVm.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserRegisterVm.Forename"></label>
+                <input asp-for="UserRegisterVm.Forename" class="form-control" />
+                <span asp-validation-for="UserRegisterVm.Forename" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserRegisterVm.Surname"></label>
+                <input asp-for="UserRegisterVm.Surname" class="form-control" />
+                <span asp-validation-for="UserRegisterVm.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserRegisterVm.Password"></label>
+                <input asp-for="UserRegisterVm.Password" class="form-control" />
+                <span asp-validation-for="UserRegisterVm.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserRegisterVm.ConfirmPassword"></label>
+                <input asp-for="UserRegisterVm.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="UserRegisterVm.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
