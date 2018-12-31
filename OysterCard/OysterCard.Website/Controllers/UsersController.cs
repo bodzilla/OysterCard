@@ -25,7 +25,7 @@ namespace OysterCard.Website.Controllers
         [Route("{users}")]
         public async Task<IActionResult> AllUsers()
         {
-            var users = await _userService.GetAllAsync();
+            var users = await _userService.GetAllAsync(x => x.Oysters);
             return Content(users.ToString());
         }
 
@@ -38,7 +38,7 @@ namespace OysterCard.Website.Controllers
         public async Task<IActionResult> UserByEmail(string email)
         {
             if (String.IsNullOrWhiteSpace(email)) return View($"Index", "Home");
-            var user = await _userService.GetByEmailAsync(email);
+            var user = await _userService.GetByEmailAsync(email, x => x.Oysters);
             return Content(user != null ? user.ToString() : $"{email} doesn't exist.");
         }
     }

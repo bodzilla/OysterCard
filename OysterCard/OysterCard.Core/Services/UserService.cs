@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using OysterCard.Core.Contracts.Services;
@@ -18,16 +20,16 @@ namespace OysterCard.Core.Services
         public UserService(IUserUOW unitOfWork) => _unitOfWork = unitOfWork;
 
         /// <inheritdoc />
-        public async Task<IEnumerable<UserDTO>> GetAllAsync()
+        public async Task<IEnumerable<UserDTO>> GetAllAsync(params Expression<Func<User, object>>[] navigationProperties)
         {
-            var users = await _unitOfWork.Users.GetAllAsync();
+            var users = await _unitOfWork.Users.GetAllAsync(navigationProperties);
             return users.Select(Mapper.Map<User, UserDTO>);
         }
 
         /// <inheritdoc />
-        public async Task<UserDTO> GetByEmailAsync(string email)
+        public async Task<UserDTO> GetByEmailAsync(string email, params Expression<Func<User, object>>[] navigationProperties)
         {
-            var user = await _unitOfWork.Users.GetAsync(x => x.NormalizedEmail.Equals(email.ToUpper()));
+            var user = await _unitOfWork.Users.GetAsync(x => x.NormalizedEmail.Equals(email.ToUpper()), navigationProperties);
             return Mapper.Map<UserDTO>(user);
         }
     }
