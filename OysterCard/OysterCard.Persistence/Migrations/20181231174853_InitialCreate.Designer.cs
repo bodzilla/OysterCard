@@ -10,7 +10,7 @@ using OysterCard.Persistence;
 namespace OysterCard.Persistence.Migrations
 {
     [DbContext(typeof(OysterCardContext))]
-    [Migration("20181231134608_InitialCreate")]
+    [Migration("20181231174853_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -125,6 +125,9 @@ namespace OysterCard.Persistence.Migrations
                     b.Property<byte[]>("EntityVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(3,2)");
 
                     b.Property<int>("UserId");
 

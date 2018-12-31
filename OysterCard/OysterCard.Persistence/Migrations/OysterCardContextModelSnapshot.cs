@@ -124,6 +124,9 @@ namespace OysterCard.Persistence.Migrations
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(3,2)");
+
                     b.Property<int>("UserId");
 
                     b.HasKey("Id");

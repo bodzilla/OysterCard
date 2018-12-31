@@ -21,10 +21,10 @@ namespace OysterCard.Persistence.Configurations
             // Oyster rate precision and scale.
             // Scale: max £9.
             // Precision: max 2 decimal points.
-            builder.Property(x => x.Balance).HasColumnType("decimal(1,2)");
+            builder.Property(x => x.Rate).HasColumnType("decimal(3,2)");
 
             // Oyster balance precision and scale.
-            // Scale: max £9999.
+            // Scale: max £99.
             // Precision: max 2 decimal points.
             builder.Property(x => x.Balance).HasColumnType("decimal(4,2)");
 

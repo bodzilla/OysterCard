@@ -190,6 +190,7 @@ namespace OysterCard.Persistence.Migrations
                     EntityCreated = table.Column<DateTime>(nullable: false),
                     EntityActive = table.Column<bool>(nullable: false),
                     EntityVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    Rate = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
                     Balance = table.Column<decimal>(type: "decimal(4,2)", nullable: false, defaultValue: 0m),
                     UserId = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false)
