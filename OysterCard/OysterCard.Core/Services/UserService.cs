@@ -25,9 +25,9 @@ namespace OysterCard.Core.Services
         }
 
         /// <inheritdoc />
-        public async Task<UserDTO> GetByUsernameAsync(string username)
+        public async Task<UserDTO> GetByEmailAsync(string email)
         {
-            var user = await _unitOfWork.Users.GetAsync(x => x.NormalizedUserName.Equals(username.ToUpper()));
+            var user = await _unitOfWork.Users.GetAsync(x => x.NormalizedEmail.Equals(email.ToUpper()));
             return Mapper.Map<UserDTO>(user);
         }
     }

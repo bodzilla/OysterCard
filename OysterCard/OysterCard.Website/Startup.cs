@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OysterCard.Core.Contracts.Repositories;
 using OysterCard.Core.Contracts.Services;
+using OysterCard.Core.DTO;
 using OysterCard.Core.Models;
 using OysterCard.Core.Services;
 using OysterCard.Core.UOW;
@@ -34,6 +35,9 @@ namespace OysterCard.Website
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            // Configure data transfer object mappings.
+            MappingConfiguration.Configure();
 
             #region Wire Up Dependencies
 

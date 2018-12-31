@@ -19,8 +19,8 @@ namespace OysterCard.Core.Contracts.Services
         /// <summary>
         /// Gets <see cref="UserDTO"/> by email.
         /// </summary>
-        /// <param name="username"></param>
+        /// <param name="email"></param>
         /// <returns></returns>
-        Task<UserDTO> GetByUsernameAsync(string username);
+        Task<UserDTO> GetByEmailAsync(string email);
     }
 }

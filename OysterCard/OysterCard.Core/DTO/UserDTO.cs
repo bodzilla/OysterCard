@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OysterCard.Core.Contracts;
 using OysterCard.Core.Models;
 
@@ -14,12 +15,18 @@ namespace OysterCard.Core.DTO
 
         public DateTime EntityCreated { get; set; }
 
-        public string Username { get; set; }
-
         public string Email { get; set; }
 
-        public int Level { get; set; }
+        public string Forename { get; set; }
 
-        public double Experience { get; set; }
+        public string Surname { get; set; }
+
+        public string Address { get; set; }
+
+        public string City { get; set; }
+
+        public string PostCode { get; set; }
+
+        public IEnumerable<Oyster> Oysters { get; set; }
     }
 }

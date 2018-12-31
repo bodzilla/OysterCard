@@ -62,7 +62,7 @@ namespace OysterCard.Website.Areas.Identity.Pages.Account
 
                 string callbackUrl = Url.Page("/Account/ConfirmEmail",
                     pageHandler: null,
-                    values: new { userId = user.Id, code = code },
+                    values: new { userId = user.Id, code },
                     protocol: Request.Scheme);
 
                 await _emailSender.SendEmailAsync(UserRegisterVm.Email, "Confirm your email",
