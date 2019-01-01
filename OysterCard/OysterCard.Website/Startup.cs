@@ -8,15 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OysterCard.Core.Contracts.Repositories;
-using OysterCard.Core.Contracts.Services;
 using OysterCard.Core.DTO;
 using OysterCard.Core.Models;
-using OysterCard.Core.Services;
-using OysterCard.Core.UOW;
-using OysterCard.Persistence;
-using OysterCard.Persistence.Repositories;
-using OysterCard.Persistence.UOW;
 
 namespace OysterCard.Website
 {
@@ -39,23 +32,8 @@ namespace OysterCard.Website
             // Configure data transfer object mappings.
             MappingConfiguration.Configure();
 
-            #region Wire Up Dependencies
-
-            services.AddScoped<DbContext, OysterCardContext>();
-
-            services.AddScoped<ISettingsRepository, SettingsRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IOysterRepository, OysterRepository>();
-
-            services.AddScoped<ISettingsUOW, SettingsUOW>();
-            services.AddScoped<IUserUOW, UserUOW>();
-            services.AddScoped<IOysterUOW, OysterUOW>();
-
-            services.AddScoped<ISettingsService, SettingsService>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IOysterService, OysterService>();
-
-            #endregion
+            // Wire up dependency injections.
+            services.WireUpDependencies();
 
             // Add context.
             services.AddDbContext<DbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
