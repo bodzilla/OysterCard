@@ -33,6 +33,10 @@ namespace OysterCard.Persistence.Configurations
             builder.Property(x => x.Surname).IsRequired()
                 .HasMaxLength(255);
 
+            builder.Property(x => x.Address).HasMaxLength(255);
+            builder.Property(x => x.City).HasMaxLength(100);
+            builder.Property(x => x.PostCode).HasMaxLength(10);
+
             // User has many oysters.
             // Oyster has one user.
             builder.HasMany(x => x.Oysters);

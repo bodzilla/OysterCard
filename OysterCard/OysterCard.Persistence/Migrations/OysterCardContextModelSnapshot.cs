@@ -203,9 +203,11 @@ namespace OysterCard.Persistence.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("Address");
+                    b.Property<string>("Address")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("City");
+                    b.Property<string>("City")
+                        .HasMaxLength(100);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -244,7 +246,8 @@ namespace OysterCard.Persistence.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("PostCode");
+                    b.Property<string>("PostCode")
+                        .HasMaxLength(10);
 
                     b.Property<string>("SecurityStamp");
 

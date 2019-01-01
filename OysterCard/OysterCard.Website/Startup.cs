@@ -87,10 +87,6 @@ namespace OysterCard.Website
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
-            // Ensure database exists.
-            var context = serviceProvider.GetService<DbContext>();
-            context.Database.EnsureCreated();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

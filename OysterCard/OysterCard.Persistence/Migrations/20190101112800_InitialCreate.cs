@@ -49,9 +49,9 @@ namespace OysterCard.Persistence.Migrations
                     EntityVersion = table.Column<byte[]>(nullable: true),
                     Forename = table.Column<string>(maxLength: 255, nullable: false),
                     Surname = table.Column<string>(maxLength: 255, nullable: false),
-                    Address = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    PostCode = table.Column<string>(nullable: true)
+                    Address = table.Column<string>(maxLength: 255, nullable: true),
+                    City = table.Column<string>(maxLength: 100, nullable: true),
+                    PostCode = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
                 {

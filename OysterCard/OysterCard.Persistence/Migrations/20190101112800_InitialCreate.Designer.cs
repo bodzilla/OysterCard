@@ -10,7 +10,7 @@ using OysterCard.Persistence;
 namespace OysterCard.Persistence.Migrations
 {
     [DbContext(typeof(OysterCardContext))]
-    [Migration("20181231174853_InitialCreate")]
+    [Migration("20190101112800_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -205,9 +205,11 @@ namespace OysterCard.Persistence.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("Address");
+                    b.Property<string>("Address")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("City");
+                    b.Property<string>("City")
+                        .HasMaxLength(100);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -246,7 +248,8 @@ namespace OysterCard.Persistence.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("PostCode");
+                    b.Property<string>("PostCode")
+                        .HasMaxLength(10);
 
                     b.Property<string>("SecurityStamp");
 
