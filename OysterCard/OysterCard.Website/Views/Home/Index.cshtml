@@ -7,11 +7,11 @@
 <div class="text-center">
     @if (Model != null)
     {
-        <h1 class="display-4">Welcome @Model.Forename</h1>
+        <partial name="_OystersPartial" model="@Model" />
     }
     else
     {
         <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     }
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
