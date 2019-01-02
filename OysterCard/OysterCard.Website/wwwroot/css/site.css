@@ -57,3 +57,16 @@ body {
     height: 50px;
     line-height: 55px; /* Vertically center the text there */
 }
+
+/* Custom styles and overrides */
+.text-dark {
+    color: #343a40 !important;
+}
+
+a.text-dark:hover, a.text-dark:focus {
+    color: #007bff !important;
+}
+
+.navbar {
+    height: 55px;
+}
