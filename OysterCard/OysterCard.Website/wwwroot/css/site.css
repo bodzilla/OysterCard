@@ -54,19 +54,32 @@ body {
     width: 100%;
     white-space: nowrap;
     /* Set the fixed height of the footer here */
-    height: 50px;
-    line-height: 55px; /* Vertically center the text there */
+    height: 40px;
+    /* Vertically center the text there */
+    line-height: 45px;
 }
 
 /* Custom styles and overrides */
+.logo {
+    width: 40%;
+    height: auto;
+}
+
+.navbar {
+    height: 55px;
+}
+
+.brand {
+    position: absolute;
+    left: 50%;
+    margin-left: -145px !important;
+    display: block;
+}
+
 .text-dark {
     color: #343a40 !important;
 }
 
 a.text-dark:hover, a.text-dark:focus {
     color: #007bff !important;
-}
-
-.navbar {
-    height: 55px;
 }
