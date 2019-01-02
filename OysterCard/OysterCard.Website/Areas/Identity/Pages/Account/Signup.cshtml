@@ -1,0 +1,47 @@
+﻿@page
+@model SignupModel
+
+@{
+    ViewData["Title"] = "Sign up";
+}
+
+<div align="center" style="margin-top: 50px">
+    <div class="card" style="width: 40%;min-width: 300px;" align="justify">
+        <div class="card-header">Sign up</div>
+        <div class="card-body">
+            <div class="card-title">
+                All fields are required.
+            </div>
+            <hr />
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <input asp-for="UserSignupVm.Forename" class="form-control" />
+                    <span asp-validation-for="UserSignupVm.Forename" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="UserSignupVm.Surname" class="form-control" />
+                    <span asp-validation-for="UserSignupVm.Surname" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input asp-for="UserSignupVm.Email" class="form-control" />
+                    <span asp-validation-for="UserSignupVm.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="UserSignupVm.Password" class="form-control" />
+                    <span asp-validation-for="UserSignupVm.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="UserSignupVm.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="UserSignupVm.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign up</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

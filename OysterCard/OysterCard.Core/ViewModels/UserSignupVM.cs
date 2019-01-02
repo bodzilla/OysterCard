@@ -4,9 +4,9 @@ using OysterCard.Core.Models;
 namespace OysterCard.Core.ViewModels
 {
     /// <summary>
-    /// The view model for the <see cref="User"/> register page.
+    /// The view model for the <see cref="User"/> sign up page.
     /// </summary>
-    public sealed class UserRegisterVM
+    public sealed class UserSignupVM
     {
         [Required]
         [EmailAddress]

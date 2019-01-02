@@ -13,14 +13,14 @@ using OysterCard.Core.ViewModels;
 namespace OysterCard.Website.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class RegisterModel : PageModel
+    public class SignupModel : PageModel
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
-        private readonly ILogger<RegisterModel> _logger;
+        private readonly ILogger<SignupModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        public RegisterModel(UserManager<User> userManager, SignInManager<User> signInManager, ILogger<RegisterModel> logger, IEmailSender emailSender)
+        public SignupModel(UserManager<User> userManager, SignInManager<User> signInManager, ILogger<SignupModel> logger, IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -29,7 +29,7 @@ namespace OysterCard.Website.Areas.Identity.Pages.Account
         }
 
         [BindProperty]
-        public UserRegisterVM UserRegisterVm { get; set; }
+        public UserSignupVM UserSignupVm { get; set; }
 
         public string ReturnUrl { get; set; }
 
@@ -47,17 +47,17 @@ namespace OysterCard.Website.Areas.Identity.Pages.Account
             {
                 EntityCreated = DateTime.Now,
                 EntityActive = true,
-                UserName = UserRegisterVm.Email,
-                Email = UserRegisterVm.Email,
-                Forename = UserRegisterVm.Forename,
-                Surname = UserRegisterVm.Surname
+                UserName = UserSignupVm.Email,
+                Email = UserSignupVm.Email,
+                Forename = UserSignupVm.Forename,
+                Surname = UserSignupVm.Surname
             };
 
-            var result = await _userManager.CreateAsync(user, UserRegisterVm.Password);
+            var result = await _userManager.CreateAsync(user, UserSignupVm.Password);
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User created a new account with password.");
+                _logger.LogInformation($"User {user.Email} created.");
                 string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
                 string callbackUrl = Url.Page("/Account/ConfirmEmail",
@@ -65,8 +65,8 @@ namespace OysterCard.Website.Areas.Identity.Pages.Account
                     values: new { userId = user.Id, code },
                     protocol: Request.Scheme);
 
-                await _emailSender.SendEmailAsync(UserRegisterVm.Email, "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                await _emailSender.SendEmailAsync(UserSignupVm.Email, "Verify your account",
+                    $"Please verify your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 return LocalRedirect(returnUrl);
