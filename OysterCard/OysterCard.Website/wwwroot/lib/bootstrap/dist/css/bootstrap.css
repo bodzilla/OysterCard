@@ -3999,7 +3999,6 @@ input[type="button"].btn-block {
 }
 
 .navbar-nav {
-  height: 40px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;

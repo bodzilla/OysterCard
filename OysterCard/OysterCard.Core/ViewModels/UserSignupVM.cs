@@ -10,27 +10,27 @@ namespace OysterCard.Core.ViewModels
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email", Prompt = "Email")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(255, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
-        [Display(Name = "Forename", Prompt = "Forename")]
+        [Display(Name = "Forename")]
         public string Forename { get; set; }
 
         [Required]
         [StringLength(255, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
-        [Display(Name = "Surname", Prompt = "Surname")]
+        [Display(Name = "Surname")]
         public string Surname { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password", Prompt = "Password")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password", Prompt = "Confirm Password")]
+        [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }

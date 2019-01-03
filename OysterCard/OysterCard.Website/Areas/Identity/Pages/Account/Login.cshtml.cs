@@ -51,7 +51,7 @@ namespace OysterCard.Website.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (!ModelState.IsValid) return Page();
 
-            var result = await _signInManager.PasswordSignInAsync(UserLoginVm.Email, UserLoginVm.Password, UserLoginVm.RememberMe, lockoutOnFailure: true);
+            var result = await _signInManager.PasswordSignInAsync(UserLoginVm.Email, UserLoginVm.Password, isPersistent: false, lockoutOnFailure: true);
             if (result.Succeeded)
             {
                 _logger.LogInformation("User logged in.");
@@ -59,7 +59,7 @@ namespace OysterCard.Website.Areas.Identity.Pages.Account
             }
             if (result.RequiresTwoFactor)
             {
-                return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, UserLoginVm.RememberMe });
+                return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl });
             }
             if (result.IsLockedOut)
             {
