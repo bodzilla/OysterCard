@@ -1,5 +1,9 @@
 ﻿@model OysterCard.Core.DTO.UserDTO
 
+@{
+    ViewData["Title"] = "Home";
+}
+
 <h1>Welcome, @Model.Forename</h1>
 @if (@Model.Oysters.Any())
 {
