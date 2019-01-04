@@ -9,18 +9,16 @@
 }
 else
 {
-    <div class="alert alert-warning text-center mt-4 mb-4" role="alert">
-        <h5 class="alert-heading mt-1">You don't have any active Oysters</h5>
-    </div>
+    <h5 class="alert border-warning alert-warning text-center" role="alert">You don't have any active Oysters</h5>
     <div class="card-deck">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Oyster services</h5>
                 <p class="card-text">
-                    <ul>
-                        <li>Top up</li>
-                        <li>Travelcards</li>
-                        <li>Transfer ownership</li>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a asp-area="" asp-controller="Oysters" asp-action="">Top up</a></li>
+                        <li class="list-group-item"><a asp-area="" asp-controller="Oysters" asp-action="">Travel cards</a></li>
+                        <li class="list-group-item"><a asp-area="" asp-controller="Oysters" asp-action="">Transfer ownership</a></li>
                     </ul>
                 </p>
             </div>

@@ -9,6 +9,10 @@ a.navbar-brand {
 
 /* Sticky footer styles
 -------------------------------------------------- */
+* {
+    font-family: 'Mukta', sans-serif;
+}
+
 html {
     font-size: 14px;
 }
