@@ -1,21 +1,12 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using OysterCard.Core.Contracts.Services;
 using OysterCard.Core.ViewModels;
 
 namespace OysterCard.Website.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IUserService _userService;
-
-        #region Default Constructor
-
-        public HomeController(IUserService userService) => _userService = userService;
-
-        #endregion
-
-        public IActionResult Index() => View();
+        public IActionResult Index() => User.Identity.IsAuthenticated ? (IActionResult)RedirectToAction("Index", "Oysters") : View();
 
         public IActionResult Privacy() => View();
 

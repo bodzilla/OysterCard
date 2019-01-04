@@ -48,7 +48,7 @@ namespace OysterCard.Website.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/Oysters");
+            returnUrl = returnUrl ?? Url.Content("~/");
             if (!ModelState.IsValid) return Page();
 
             var result = await _signInManager.PasswordSignInAsync(UserLoginVm.Email, UserLoginVm.Password, isPersistent: false, lockoutOnFailure: true);
