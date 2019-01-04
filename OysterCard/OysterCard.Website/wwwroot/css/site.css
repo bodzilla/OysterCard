@@ -40,23 +40,17 @@ button.accept-policy {
 -------------------------------------------------- */
 html {
     position: relative;
-    min-height: 99%;
+    min-height: 100%;
 }
 
 body {
+    padding-top: 70px;
     /* Margin bottom by footer height */
     margin-bottom: 60px;
 }
 
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    /* Set the fixed height of the footer here */
-    height: 40px;
-    /* Vertically center the text there */
-    line-height: 45px;
+.footer, .push {
+    font-size: 10pt;
 }
 
 /* Custom styles and overrides */
@@ -68,7 +62,7 @@ body {
 .brand {
     position: absolute;
     left: 50%;
-    margin-left: -142px !important;
+    margin-left: -138px !important;
     display: block;
 }
 

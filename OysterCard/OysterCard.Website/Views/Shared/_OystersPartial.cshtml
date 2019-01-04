@@ -1,7 +1,6 @@
 ﻿@model OysterCard.Core.DTO.UserDTO
 
 <h1>Welcome, @Model.Forename</h1>
-<hr />
 @if (@Model.Oysters.Any())
 {
     <div class="alert alert-info" role="alert">
@@ -10,29 +9,36 @@
 }
 else
 {
-    <div class="alert alert-warning text-center" role="alert">
-        <h5 class="alert-heading">You don't have any active Oysters</h5>
+    <div class="alert alert-warning text-center mt-4 mb-4" role="alert">
+        <h5 class="alert-heading mt-1">You don't have any active Oysters</h5>
     </div>
     <div class="card-deck">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Apply for an Oyster</h5>
-                <p class="card-text">By applying for an Oyster,</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title">Oyster services</h5>
+                <p class="card-text">
+                    <ul>
+                        <li>Top up</li>
+                        <li>Travelcards</li>
+                        <li>Transfer ownership</li>
+                    </ul>
+                </p>
             </div>
         </div>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <a asp-area="" asp-controller="Oysters" asp-action="Apply">
+                    <h5 class="card-title">Apply for an Oyster</h5>
+                </a>
+                <p class="card-text">Top up, buy travel cards, track journeys and manage your Oyster.</p>
             </div>
         </div>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <a asp-area="" asp-controller="Oysters" asp-action="Status">
+                    <h5 class="card-title">Oyster applications</h5>
+                </a>
+                <p class="card-text">View the status of, amend or cancel existing Oyster applications.</p>
             </div>
         </div>
     </div>
