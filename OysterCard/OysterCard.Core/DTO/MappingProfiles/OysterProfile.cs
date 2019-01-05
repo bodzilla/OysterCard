@@ -13,11 +13,15 @@ namespace OysterCard.Core.DTO.MappingProfiles
         public OysterProfile()
         {
             CreateMap<Oyster, OysterDTO>().ReverseMap();
-            CreateMap<OysterApplicationVM, Oyster>().ConvertUsing(new OysterConverter());
+            CreateMap<OysterApplicationVM, Oyster>().ConvertUsing(new OysterApplicationVmConverter());
         }
     }
 
-    public class OysterConverter : ITypeConverter<OysterApplicationVM, Oyster>
+    /// <inheritdoc />
+    /// <summary>
+    /// Converts an ambingious type of <see cref="T:OysterCard.Core.Models.Oyster" /> to a defined <see cref="T:OysterCard.Core.Enums.OysterType" />.
+    /// </summary>
+    public class OysterApplicationVmConverter : ITypeConverter<OysterApplicationVM, Oyster>
     {
         public Oyster Convert(OysterApplicationVM source, Oyster destination, ResolutionContext context)
         {
@@ -26,12 +30,15 @@ namespace OysterCard.Core.DTO.MappingProfiles
                 case OysterType.Junior:
                     var oysterJunior = MapData(new OysterJunior(), source);
                     return oysterJunior;
+
                 case OysterType.Adult:
                     var oysterAdult = MapData(new OysterAdult(), source);
                     return oysterAdult;
+
                 case OysterType.Senior:
                     var oysterSenior = MapData(new OysterSenior(), source);
                     return oysterSenior;
+
                 default:
                     throw new ArgumentOutOfRangeException($"{source.OysterType} is not defined in enum list.");
             }

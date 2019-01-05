@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OysterCard.Core.Contracts.Services;
+using OysterCard.Core.Models;
 using OysterCard.Core.ViewModels;
 using SmartBreadcrumbs;
 
@@ -35,14 +36,18 @@ namespace OysterCard.Website.Controllers
         [Breadcrumb("Apply for an Oyster")]
         public IActionResult Apply() => View();
 
-        [HttpPost]
+        /// <summary>
+        /// Apply for <see cref="Oyster"/>s for a <see cref="User"/>.
+        /// </summary>
+        /// <param name="oyster"></param>
+        /// <returns></returns>
         public async Task<IActionResult> ApplyForOyster(OysterApplicationVM oyster)
         {
             if (!ModelState.IsValid) return View("Apply");
-            int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            oyster.UserId = userId;
+            oyster.UserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)); // Set the user's id.
             await _oysterService.ApplyForOysters(oyster);
             return Ok("Oyster application sent!");
+            //TODO: Redirect to oyster application status page instead.
         }
     }
 }

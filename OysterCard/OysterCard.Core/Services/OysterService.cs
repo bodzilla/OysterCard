@@ -26,11 +26,7 @@ namespace OysterCard.Core.Services
         /// <inheritdoc />
         public async Task ApplyForOysters(params OysterApplicationVM[] oystersVm)
         {
-            foreach (var oysterVm in oystersVm)
-            {
-                var oyster = Mapper.Map<Oyster>(oysterVm);
-                await _unitOfWork.Oysters.AddAsync(oyster);
-            }
+            foreach (var oysterVm in oystersVm) await _unitOfWork.Oysters.AddAsync(Mapper.Map<Oyster>(oysterVm));
             await _unitOfWork.CompleteAsync();
         }
     }
