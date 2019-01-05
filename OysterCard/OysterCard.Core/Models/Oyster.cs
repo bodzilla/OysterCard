@@ -40,6 +40,31 @@ namespace OysterCard.Core.Models
         public byte[] EntityVersion { get; set; }
 
         /// <summary>
+        /// The user's forename(s).
+        /// </summary>
+        public string Forename { get; set; }
+
+        /// <summary>
+        /// The user's surname(s).
+        /// </summary>
+        public string Surname { get; set; }
+
+        /// <summary>
+        /// The user's address.
+        /// </summary>
+        public string Address { get; set; }
+
+        /// <summary>
+        /// The user's city.
+        /// </summary>
+        public string City { get; set; }
+
+        /// <summary>
+        /// The user's post code.
+        /// </summary>
+        public string PostCode { get; set; }
+
+        /// <summary>
         /// The oyster type.
         /// </summary>
         public OysterType OysterType => _oysterType;

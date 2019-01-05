@@ -15,6 +15,16 @@ namespace OysterCard.Core.DTO
 
         public DateTime EntityCreated { get; set; }
 
+        public string Forename { get; set; }
+
+        public string Surname { get; set; }
+
+        public string Address { get; set; }
+
+        public string City { get; set; }
+
+        public string PostCode { get; set; }
+
         public OysterType OysterType { get; set; }
 
         public decimal Rate { get; set; }

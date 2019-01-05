@@ -10,7 +10,7 @@ using OysterCard.Persistence;
 namespace OysterCard.Persistence.Migrations
 {
     [DbContext(typeof(OysterCardContext))]
-    [Migration("20190101112800_InitialCreate")]
+    [Migration("20190105122412_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -110,10 +110,18 @@ namespace OysterCard.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
                     b.Property<decimal>("Balance")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("decimal(4,2)")
                         .HasDefaultValue(0m);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
@@ -126,8 +134,20 @@ namespace OysterCard.Persistence.Migrations
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
+                    b.Property<string>("Forename")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.Property<string>("PostCode")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
                     b.Property<decimal>("Rate")
                         .HasColumnType("decimal(3,2)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(255);
 
                     b.Property<int>("UserId");
 
@@ -205,12 +225,6 @@ namespace OysterCard.Persistence.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("Address")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("City")
-                        .HasMaxLength(100);
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
@@ -225,10 +239,6 @@ namespace OysterCard.Persistence.Migrations
                     b.Property<DateTime>("EntityCreated");
 
                     b.Property<byte[]>("EntityVersion");
-
-                    b.Property<string>("Forename")
-                        .IsRequired()
-                        .HasMaxLength(255);
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -248,14 +258,7 @@ namespace OysterCard.Persistence.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("PostCode")
-                        .HasMaxLength(10);
-
                     b.Property<string>("SecurityStamp");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasMaxLength(255);
 
                     b.Property<bool>("TwoFactorEnabled");
 

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OysterCard.Core.DTO;
 using OysterCard.Core.Models;
+using OysterCard.Persistence;
 using SmartBreadcrumbs;
 
 namespace OysterCard.Website
@@ -37,12 +38,12 @@ namespace OysterCard.Website
             services.WireUpDependencies();
 
             // Add context.
-            services.AddDbContext<DbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<OysterCardContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // Add identity.
             services.AddIdentity<User, Role>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<DbContext>()
+                .AddEntityFrameworkStores<OysterCardContext>()
                 .AddDefaultTokenProviders();
 
             // Configure identity options.

@@ -16,6 +16,21 @@ namespace OysterCard.Persistence.Configurations
                 .IsConcurrencyToken()
                 .IsRowVersion();
 
+            builder.Property(x => x.Forename).IsRequired()
+                .HasMaxLength(255);
+
+            builder.Property(x => x.Surname).IsRequired()
+                .HasMaxLength(255);
+
+            builder.Property(x => x.Address).IsRequired()
+                .HasMaxLength(255);
+
+            builder.Property(x => x.City).IsRequired()
+                .HasMaxLength(100);
+
+            builder.Property(x => x.PostCode).IsRequired()
+                .HasMaxLength(10);
+
             builder.Property(x => x.Balance).HasDefaultValue(0);
 
             // Oyster rate precision and scale.

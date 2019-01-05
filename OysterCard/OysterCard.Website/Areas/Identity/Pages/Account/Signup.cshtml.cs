@@ -48,9 +48,7 @@ namespace OysterCard.Website.Areas.Identity.Pages.Account
                 EntityCreated = DateTime.Now,
                 EntityActive = true,
                 UserName = UserSignupVm.Email,
-                Email = UserSignupVm.Email,
-                Forename = UserSignupVm.Forename,
-                Surname = UserSignupVm.Surname
+                Email = UserSignupVm.Email
             };
 
             var result = await _userManager.CreateAsync(user, UserSignupVm.Password);

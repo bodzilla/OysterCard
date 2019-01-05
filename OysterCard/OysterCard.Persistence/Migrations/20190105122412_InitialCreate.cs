@@ -46,12 +46,7 @@ namespace OysterCard.Persistence.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     EntityCreated = table.Column<DateTime>(nullable: false),
                     EntityActive = table.Column<bool>(nullable: false),
-                    EntityVersion = table.Column<byte[]>(nullable: true),
-                    Forename = table.Column<string>(maxLength: 255, nullable: false),
-                    Surname = table.Column<string>(maxLength: 255, nullable: false),
-                    Address = table.Column<string>(maxLength: 255, nullable: true),
-                    City = table.Column<string>(maxLength: 100, nullable: true),
-                    PostCode = table.Column<string>(maxLength: 10, nullable: true)
+                    EntityVersion = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -190,6 +185,11 @@ namespace OysterCard.Persistence.Migrations
                     EntityCreated = table.Column<DateTime>(nullable: false),
                     EntityActive = table.Column<bool>(nullable: false),
                     EntityVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    Forename = table.Column<string>(maxLength: 255, nullable: false),
+                    Surname = table.Column<string>(maxLength: 255, nullable: false),
+                    Address = table.Column<string>(maxLength: 255, nullable: false),
+                    City = table.Column<string>(maxLength: 100, nullable: false),
+                    PostCode = table.Column<string>(maxLength: 10, nullable: false),
                     Rate = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
                     Balance = table.Column<decimal>(type: "decimal(4,2)", nullable: false, defaultValue: 0m),
                     UserId = table.Column<int>(nullable: false),

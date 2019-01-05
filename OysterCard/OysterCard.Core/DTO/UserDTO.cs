@@ -17,16 +17,6 @@ namespace OysterCard.Core.DTO
 
         public string Email { get; set; }
 
-        public string Forename { get; set; }
-
-        public string Surname { get; set; }
-
-        public string Address { get; set; }
-
-        public string City { get; set; }
-
-        public string PostCode { get; set; }
-
         public IEnumerable<Oyster> Oysters { get; set; }
     }
 }
