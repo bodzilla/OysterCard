@@ -14,19 +14,19 @@ using System.Threading.Tasks;
 namespace OysterCard.Website.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class LoginModel : PageModel
+    public class SigninModel : PageModel
     {
         private readonly SignInManager<User> _signInManager;
-        private readonly ILogger<LoginModel> _logger;
+        private readonly ILogger<SigninModel> _logger;
 
-        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger)
+        public SigninModel(SignInManager<User> signInManager, ILogger<SigninModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;
         }
 
         [BindProperty]
-        public UserLoginVM UserLoginVm { get; set; }
+        public UserSigninVM UserSigninVm { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
@@ -51,10 +51,10 @@ namespace OysterCard.Website.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (!ModelState.IsValid) return Page();
 
-            var result = await _signInManager.PasswordSignInAsync(UserLoginVm.Email, UserLoginVm.Password, isPersistent: false, lockoutOnFailure: true);
+            var result = await _signInManager.PasswordSignInAsync(UserSigninVm.Email, UserSigninVm.Password, isPersistent: false, lockoutOnFailure: true);
             if (result.Succeeded)
             {
-                _logger.LogInformation("User logged in.");
+                _logger.LogInformation("User signed in.");
                 return LocalRedirect(returnUrl);
             }
             if (result.RequiresTwoFactor)
@@ -68,7 +68,7 @@ namespace OysterCard.Website.Areas.Identity.Pages.Account
             }
 
             // If we got this far, something failed, redisplay form.
-            ModelState.AddModelError(String.Empty, "Invalid login attempt.");
+            ModelState.AddModelError(String.Empty, "Your credentials were invalid.");
             return Page();
         }
     }

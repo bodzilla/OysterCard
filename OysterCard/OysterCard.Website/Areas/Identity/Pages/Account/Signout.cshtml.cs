@@ -9,12 +9,12 @@ using OysterCard.Core.Models;
 namespace OysterCard.Website.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class LogoutModel : PageModel
+    public class SignoutModel : PageModel
     {
         private readonly SignInManager<User> _signInManager;
-        private readonly ILogger<LogoutModel> _logger;
+        private readonly ILogger<SignoutModel> _logger;
 
-        public LogoutModel(SignInManager<User> signInManager, ILogger<LogoutModel> logger)
+        public SignoutModel(SignInManager<User> signInManager, ILogger<SignoutModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;
@@ -23,7 +23,7 @@ namespace OysterCard.Website.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation($"{User.Identity.Name} logged out.");
+            _logger.LogInformation($"{User.Identity.Name} signed out.");
             if (returnUrl != null) return LocalRedirect(returnUrl);
             return Page();
         }

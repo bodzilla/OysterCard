@@ -1,8 +1,8 @@
 ﻿@page
-@model LoginModel
+@model SigninModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Sign in";
 }
 
 <div align="center">
@@ -13,17 +13,17 @@
             <form id="account" method="post">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="UserLoginVm.Email"></label>
-                    <input asp-for="UserLoginVm.Email" class="form-control" />
-                    <span asp-validation-for="UserLoginVm.Email" class="text-danger"></span>
+                    <label asp-for="UserSigninVm.Email"></label>
+                    <input asp-for="UserSigninVm.Email" class="form-control" />
+                    <span asp-validation-for="UserSigninVm.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="UserLoginVm.Password"></label>
-                    <input asp-for="UserLoginVm.Password" class="form-control" />
-                    <span asp-validation-for="UserLoginVm.Password" class="text-danger"></span>
+                    <label asp-for="UserSigninVm.Password"></label>
+                    <input asp-for="UserSigninVm.Password" class="form-control" />
+                    <span asp-validation-for="UserSigninVm.Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
+                    <button type="submit" class="btn btn-primary">Sign in</button>
                 </div>
             </form>
         </div>

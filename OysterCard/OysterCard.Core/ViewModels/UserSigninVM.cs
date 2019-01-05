@@ -6,7 +6,7 @@ namespace OysterCard.Core.ViewModels
     /// <summary>
     /// The view model for the <see cref="User"/> login page.
     /// </summary>
-    public sealed class UserLoginVM
+    public sealed class UserSigninVM
     {
         [Required]
         [EmailAddress]
