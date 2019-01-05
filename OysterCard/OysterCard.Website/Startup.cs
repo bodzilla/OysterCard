@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OysterCard.Core.DTO;
 using OysterCard.Core.Models;
+using SmartBreadcrumbs;
 
 namespace OysterCard.Website
 {
@@ -57,6 +58,7 @@ namespace OysterCard.Website
             // Configure site options.
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddRouting(options => options.LowercaseUrls = true);
+            services.UseBreadcrumbs(GetType().Assembly);
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             return serviceProvider;

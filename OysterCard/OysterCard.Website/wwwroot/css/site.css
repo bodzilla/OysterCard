@@ -112,3 +112,8 @@ a.text-dark:hover, a.text-dark:focus {
         .show > .btn-outline-dark.dropdown-toggle:focus {
             box-shadow: none;
         }
+
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+}
