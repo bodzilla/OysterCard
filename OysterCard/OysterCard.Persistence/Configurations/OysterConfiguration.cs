@@ -33,6 +33,8 @@ namespace OysterCard.Persistence.Configurations
 
             builder.Property(x => x.Balance).HasDefaultValue(0);
 
+            builder.Property(x => x.Verified).HasDefaultValue(false);
+
             // Oyster rate precision and scale.
             // Scale: max £9.
             // Precision: max 2 decimal points.

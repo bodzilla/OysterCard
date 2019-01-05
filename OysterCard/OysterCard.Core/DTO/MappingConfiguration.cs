@@ -13,6 +13,7 @@ namespace OysterCard.Core.DTO
             Mapper.Initialize(config =>
             {
                 config.AddProfile(new UserProfile());
+                config.AddProfile(new OysterProfile());
             });
         }
     }

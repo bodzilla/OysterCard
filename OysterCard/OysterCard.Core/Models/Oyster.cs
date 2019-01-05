@@ -81,6 +81,12 @@ namespace OysterCard.Core.Models
         public decimal Balance { get; set; }
 
         /// <summary>
+        /// The oyster's verification state.
+        /// Has a default setting of false.
+        /// </summary>
+        public bool Verified { get; set; }
+
+        /// <summary>
         /// The id of the associated <see cref="Models.User"/> for this oyster.
         /// </summary>
         public int UserId { get; set; }

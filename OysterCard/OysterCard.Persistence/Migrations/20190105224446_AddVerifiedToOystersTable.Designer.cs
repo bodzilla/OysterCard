@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OysterCard.Persistence;
 
 namespace OysterCard.Persistence.Migrations
 {
     [DbContext(typeof(OysterCardContext))]
-    partial class OysterCardContextModelSnapshot : ModelSnapshot
+    [Migration("20190105224446_AddVerifiedToOystersTable")]
+    partial class AddVerifiedToOystersTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

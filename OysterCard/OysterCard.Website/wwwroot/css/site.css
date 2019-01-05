@@ -70,6 +70,11 @@ body {
     display: block;
 }
 
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+}
+
 .text-dark {
     color: #343a40 !important;
 }
@@ -112,8 +117,3 @@ a.text-dark:hover, a.text-dark:focus {
         .show > .btn-outline-dark.dropdown-toggle:focus {
             box-shadow: none;
         }
-
-.breadcrumb {
-    background-color: transparent;
-    padding: 0;
-}

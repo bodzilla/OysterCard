@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -60,6 +61,12 @@ namespace OysterCard.Website
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddRouting(options => options.LowercaseUrls = true);
             services.UseBreadcrumbs(GetType().Assembly);
+
+            // Route login path to custom route to prevent default identity login route from being used.
+            services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme, options =>
+            {
+                options.LoginPath = "/Identity/Account/Signin";
+            });
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             return serviceProvider;

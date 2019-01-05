@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OysterCard.Core.Contracts.Services;
+using OysterCard.Core.ViewModels;
 using SmartBreadcrumbs;
 
 namespace OysterCard.Website.Controllers
@@ -22,7 +24,7 @@ namespace OysterCard.Website.Controllers
 
         #endregion
 
-        [DefaultBreadcrumb("Home")]
+        [DefaultBreadcrumb("Dashboard")]
 
         public async Task<IActionResult> Index()
         {
@@ -30,7 +32,17 @@ namespace OysterCard.Website.Controllers
             return View(user);
         }
 
-        [Breadcrumb("Apply")]
+        [Breadcrumb("Apply for an Oyster")]
         public IActionResult Apply() => View();
+
+        [HttpPost]
+        public async Task<IActionResult> ApplyForOyster(OysterApplicationVM oyster)
+        {
+            if (!ModelState.IsValid) return View("Apply");
+            int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            oyster.UserId = userId;
+            await _oysterService.ApplyForOysters(oyster);
+            return Ok("Oyster application sent!");
+        }
     }
 }

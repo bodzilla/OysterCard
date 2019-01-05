@@ -31,6 +31,8 @@ namespace OysterCard.Core.DTO
 
         public decimal Balance { get; set; }
 
+        public bool Verified { get; set; }
+
         public int UserId { get; set; }
 
         public User User { get; set; }
