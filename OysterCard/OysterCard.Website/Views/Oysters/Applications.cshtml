@@ -1,0 +1,29 @@
+﻿@model IEnumerable<OysterCard.Core.DTO.OysterDTO>
+
+@{
+    ViewData["Title"] = "Oyster applications";
+}
+
+<breadcrumb></breadcrumb>
+<hr />
+<h1>Oyster applications</h1>
+<br />
+@if ((bool)@ViewData["ApplicationSubmitted"])
+{
+    <h5 class="alert alert-success text-center alert-dismissible fade show" role="alert">
+        Success! Your application has been submitted.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </h5>
+}
+@if (@Model.Any())
+{
+    <h5 class="alert alert-info text-center" role="alert">
+        You currently have @Model.Count() active Oyster applications.
+    </h5>
+}
+else
+{
+    <h5 class="alert alert-warning text-center" role="alert">You don't have any active Oyster applications</h5>
+}

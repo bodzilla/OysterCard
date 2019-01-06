@@ -49,8 +49,23 @@ namespace OysterCard.Website.Controllers
             if (!ModelState.IsValid) return View("Apply");
             oyster.UserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)); // Set the user's id.
             await _oysterService.CreateNonVerifiedAsync(oyster);
-            return Ok("Oyster application sent!");
-            //TODO: Redirect to oyster application status page instead.
+            return RedirectToAction("Applications", "Oysters", new { applicationSubmitted = true });
+        }
+
+        /// <summary>
+        /// Get user's active and non-verified oysters.
+        /// </summary>
+        /// <returns></returns>
+        [Breadcrumb("Oyster applications")]
+        public async Task<IActionResult> Applications(bool applicationSubmitted)
+        {
+            var activeAndNonVerifiedOysters = await _oysterService.GetListAsync(x =>
+            x.UserId == int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))
+            && x.EntityActive
+            && !x.Verified);
+
+            ViewData["ApplicationSubmitted"] = applicationSubmitted;
+            return View(activeAndNonVerifiedOysters);
         }
     }
 }

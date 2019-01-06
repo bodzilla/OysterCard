@@ -7,6 +7,7 @@
 <breadcrumb></breadcrumb>
 <hr />
 <h1>Dashboard</h1>
+<br />
 @if (@Model.Any())
 {
     <h5 class="alert alert-info text-center" role="alert">
@@ -40,7 +41,7 @@ else
     </div>
     <div class="card">
         <div class="card-body">
-            <a asp-area="" asp-controller="Oysters" asp-action="Status">
+            <a asp-area="" asp-controller="Oysters" asp-action="Applications">
                 <h5 class="card-title">Oyster applications</h5>
             </a>
             <p class="card-text">View the status of, amend or cancel existing Oyster applications.</p>
