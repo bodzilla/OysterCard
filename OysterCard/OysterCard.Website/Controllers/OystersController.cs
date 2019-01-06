@@ -11,29 +11,27 @@ namespace OysterCard.Website.Controllers
     [Authorize]
     public class OystersController : Controller
     {
-        private readonly IUserService _userService;
         private readonly IOysterService _oysterService;
 
         #region Default Constructor
 
-        public OystersController(IUserService userService, IOysterService oysterService)
-        {
-            _userService = userService;
-            _oysterService = oysterService;
-        }
+        public OystersController(IUserService userService, IOysterService oysterService) => _oysterService = oysterService;
 
         #endregion
 
+        /// <summary>
+        /// Get user's active and verified oysters.
+        /// </summary>
+        /// <returns></returns>
         [DefaultBreadcrumb("Dashboard")]
         public async Task<IActionResult> Index()
         {
-            // Only get user's active and verified oysters.
-            var activeOysters = await _oysterService.GetListAsync(x =>
+            var activeAndVerifiedOysters = await _oysterService.GetListAsync(x =>
             x.UserId == int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))
             && x.EntityActive
             && x.Verified);
 
-            return View(activeOysters);
+            return View(activeAndVerifiedOysters);
         }
 
         [Breadcrumb("Apply for an Oyster")]
