@@ -31,6 +31,7 @@ namespace OysterCard.Persistence.Repositories
         {
             foreach (T entity in entities)
             {
+                entity.EntityActive = true;
                 entity.EntityCreated = DateTime.Now;
                 await Context.Set<T>().AddAsync(entity);
             }
@@ -74,6 +75,7 @@ namespace OysterCard.Persistence.Repositories
         {
             foreach (T entity in entities)
             {
+                entity.EntityActive = true;
                 entity.EntityCreated = DateTime.Now;
                 Context.Set<T>().Add(entity);
             }
