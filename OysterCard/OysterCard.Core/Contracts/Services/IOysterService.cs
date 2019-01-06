@@ -21,6 +21,14 @@ namespace OysterCard.Core.Contracts.Services
         Task<IEnumerable<OysterDTO>> GetAllAsync(params Expression<Func<Oyster, object>>[] navigationProperties);
 
         /// <summary>
+        /// Get list of <see cref="OysterDTO"/> with where condition.
+        /// </summary>
+        /// <param name="where"></param>
+        /// <param name="navigationProperties"></param>
+        /// <returns></returns>
+        Task<IEnumerable<OysterDTO>> GetListAsync(Expression<Func<Oyster, bool>> where, params Expression<Func<Oyster, object>>[] navigationProperties);
+
+        /// <summary>
         /// Creates <see cref="Oyster"/>s with verified state as false.
         /// </summary>
         /// <param name="oysters"></param>

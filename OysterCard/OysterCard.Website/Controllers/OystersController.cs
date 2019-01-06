@@ -27,8 +27,13 @@ namespace OysterCard.Website.Controllers
         [DefaultBreadcrumb("Dashboard")]
         public async Task<IActionResult> Index()
         {
-            var user = await _userService.GetByIdAsync(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)), x => x.Oysters);
-            return View(user);
+            // Only get user's active and verified oysters.
+            var activeOysters = await _oysterService.GetListAsync(x =>
+            x.UserId == int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))
+            && x.EntityActive
+            && x.Verified);
+
+            return View(activeOysters);
         }
 
         [Breadcrumb("Apply for an Oyster")]

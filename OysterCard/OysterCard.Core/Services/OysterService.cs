@@ -29,6 +29,13 @@ namespace OysterCard.Core.Services
         }
 
         /// <inheritdoc />
+        public async Task<IEnumerable<OysterDTO>> GetListAsync(Expression<Func<Oyster, bool>> where, params Expression<Func<Oyster, object>>[] navigationProperties)
+        {
+            var oysters = await _unitOfWork.Oysters.GetListAsync(where, navigationProperties);
+            return oysters.Select(Mapper.Map<Oyster, OysterDTO>);
+        }
+
+        /// <inheritdoc />
         public async Task CreateNonVerifiedAsync(params OysterApplicationVM[] oystersVm)
         {
             foreach (var oysterVm in oystersVm) await _unitOfWork.Oysters.AddAsync(Mapper.Map<Oyster>(oysterVm));

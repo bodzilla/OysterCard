@@ -1,4 +1,4 @@
-﻿@model OysterCard.Core.DTO.UserDTO
+﻿@model IEnumerable<OysterCard.Core.DTO.OysterDTO>
 
 @{
     ViewData["Title"] = "Home";
@@ -7,10 +7,10 @@
 <breadcrumb></breadcrumb>
 <hr />
 <h1>Dashboard</h1>
-@if (@Model.Oysters.Any())
+@if (@Model.Any())
 {
     <h5 class="alert alert-info text-center" role="alert">
-        You currently have @Model.Oysters.Count() Oysters.
+        You currently have @Model.Count() Oysters.
     </h5>
 }
 else
