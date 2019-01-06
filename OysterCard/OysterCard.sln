@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OysterCard.Website", "OysterCard.Website\OysterCard.Website.csproj", "{83266DDD-10E3-4162-8100-728651637FE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OysterCard.Website", "OysterCard.Website\OysterCard.Website.csproj", "{83266DDD-10E3-4162-8100-728651637FE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OysterCard.Core", "OysterCard.Core\OysterCard.Core.csproj", "{2AFA07B8-F9A9-415C-84E7-47F1C9C02514}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OysterCard.Core", "OysterCard.Core\OysterCard.Core.csproj", "{2AFA07B8-F9A9-415C-84E7-47F1C9C02514}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OysterCard.Persistence", "OysterCard.Persistence\OysterCard.Persistence.csproj", "{F51E6EF8-9BB9-4384-9E7F-38B95A3EBF3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OysterCard.Persistence", "OysterCard.Persistence\OysterCard.Persistence.csproj", "{F51E6EF8-9BB9-4384-9E7F-38B95A3EBF3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OysterCard.UnitTests", "OysterCard.UnitTests\OysterCard.UnitTests.csproj", "{301C97E8-76AD-449F-BC4A-DCC56F9158BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{F51E6EF8-9BB9-4384-9E7F-38B95A3EBF3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F51E6EF8-9BB9-4384-9E7F-38B95A3EBF3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F51E6EF8-9BB9-4384-9E7F-38B95A3EBF3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{301C97E8-76AD-449F-BC4A-DCC56F9158BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{301C97E8-76AD-449F-BC4A-DCC56F9158BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{301C97E8-76AD-449F-BC4A-DCC56F9158BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{301C97E8-76AD-449F-BC4A-DCC56F9158BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
