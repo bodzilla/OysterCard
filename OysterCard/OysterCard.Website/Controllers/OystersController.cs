@@ -26,7 +26,6 @@ namespace OysterCard.Website.Controllers
         #endregion
 
         [DefaultBreadcrumb("Dashboard")]
-
         public async Task<IActionResult> Index()
         {
             var user = await _userService.GetByEmailAsync(User.Identity.Name, x => x.Oysters);
