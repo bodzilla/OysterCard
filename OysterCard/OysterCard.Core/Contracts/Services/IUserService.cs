@@ -20,6 +20,14 @@ namespace OysterCard.Core.Contracts.Services
         Task<IEnumerable<UserDTO>> GetAllAsync(params Expression<Func<User, object>>[] navigationProperties);
 
         /// <summary>
+        /// Gets <see cref="UserDTO"/> by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="navigationProperties"></param>
+        /// <returns></returns>
+        Task<UserDTO> GetByIdAsync(int id, params Expression<Func<User, object>>[] navigationProperties);
+
+        /// <summary>
         /// Gets <see cref="UserDTO"/> by email.
         /// </summary>
         /// <param name="email"></param>

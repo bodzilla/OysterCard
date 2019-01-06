@@ -27,6 +27,13 @@ namespace OysterCard.Core.Services
         }
 
         /// <inheritdoc />
+        public async Task<UserDTO> GetByIdAsync(int id, params Expression<Func<User, object>>[] navigationProperties)
+        {
+            var user = await _unitOfWork.Users.GetAsync(x => x.Id == id, navigationProperties);
+            return Mapper.Map<UserDTO>(user);
+        }
+
+        /// <inheritdoc />
         public async Task<UserDTO> GetByEmailAsync(string email, params Expression<Func<User, object>>[] navigationProperties)
         {
             var user = await _unitOfWork.Users.GetAsync(x => x.NormalizedEmail.Equals(email.ToUpper()), navigationProperties);
