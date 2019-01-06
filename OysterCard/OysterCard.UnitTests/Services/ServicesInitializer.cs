@@ -1,8 +1,8 @@
 ﻿using OysterCard.Core.Mappings;
 
-namespace OysterCard.Core.Services
+namespace OysterCard.UnitTests.Services
 {
-    public static class ServicesInitializer
+    internal static class ServicesInitializer
     {
         private static bool _configured;
 
