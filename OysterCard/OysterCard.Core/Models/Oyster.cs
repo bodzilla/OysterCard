@@ -49,6 +49,8 @@ namespace OysterCard.Core.Models
         /// </summary>
         public string Surname { get; set; }
 
+        //TODO: Add date of birth.
+
         /// <summary>
         /// The user's address.
         /// </summary>
