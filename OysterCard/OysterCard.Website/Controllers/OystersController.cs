@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OysterCard.Core.Contracts.Services;
-using OysterCard.Core.Models;
 using OysterCard.Core.ViewModels;
 using SmartBreadcrumbs;
 
@@ -36,7 +35,7 @@ namespace OysterCard.Website.Controllers
         public IActionResult Apply() => View();
 
         /// <summary>
-        /// Apply for <see cref="Oyster"/>s for a <see cref="User"/>.
+        /// Apply for <see cref="T:OysterCard.Core.Models.Oyster"/>s for a <see cref="T:OysterCard.Core.Models.User"/>.
         /// </summary>
         /// <param name="oyster"></param>
         /// <returns></returns>
