@@ -16,9 +16,6 @@ namespace OysterCard.UnitTests.Services
         private Mock<IUserUOW> _unitOfWork;
         private UserService _service;
 
-        /// <summary>
-        /// Set up the object mappings first.
-        /// </summary>
         [SetUp]
         public void Setup()
         {
