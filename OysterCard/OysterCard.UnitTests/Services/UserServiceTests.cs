@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using OysterCard.Core.Contracts.UOW;
+using OysterCard.Core.DTO;
 using OysterCard.Core.Mappings;
 using OysterCard.Core.Models;
 using OysterCard.Core.Services;
@@ -45,7 +46,12 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.Users.GetAllAsync()).ReturnsAsync(data);
 
             var result = await _service.GetAllAsync();
-            Assert.That(result.Count(), Is.EqualTo(3));
+
+            // Cast to list to make assertions.
+            var users = result as IList<UserDTO> ?? result.ToList();
+
+            Assert.That(users, Is.TypeOf<List<UserDTO>>());
+            Assert.That(users.Count, Is.EqualTo(3));
         }
 
         [TestCase(1)]
@@ -60,7 +66,7 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.Users.GetAsync(It.IsAny<Expression<Func<User, bool>>>())).ReturnsAsync(data);
 
             var result = await _service.GetByIdAsync(id);
-            Assert.That(result, Is.Not.Null);
+            Assert.That(result, Is.TypeOf<UserDTO>());
         }
 
         [TestCase("test@test.com")]
@@ -75,7 +81,7 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.Users.GetAsync(It.IsAny<Expression<Func<User, bool>>>())).ReturnsAsync(data);
 
             var result = await _service.GetByEmailAsync(email);
-            Assert.That(result, Is.Not.Null);
+            Assert.That(result, Is.TypeOf<UserDTO>());
         }
     }
 }
