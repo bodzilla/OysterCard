@@ -19,12 +19,14 @@ namespace OysterCard.Website.Controllers
 
         #endregion
 
+        public IActionResult Index() => RedirectToAction("Dashboard");
+
         /// <summary>
         /// Get user's active and verified oysters.
         /// </summary>
         /// <returns></returns>
         [DefaultBreadcrumb("Dashboard")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Dashboard()
         {
             var activeAndVerifiedOysters = await _oysterService.GetListAsync(x =>
             x.UserId == int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))
