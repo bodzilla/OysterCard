@@ -4,8 +4,8 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using OysterCard.Core.Contracts.Services;
+using OysterCard.Core.Contracts.UOW;
 using OysterCard.Core.Models;
-using OysterCard.Core.UOW;
 using OysterCard.Core.ViewModels;
 
 namespace OysterCard.Core.Services

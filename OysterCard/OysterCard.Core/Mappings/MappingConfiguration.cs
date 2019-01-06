@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using OysterCard.Core.DTO.MappingProfiles;
+using OysterCard.Core.Mappings.MappingProfiles;
 
-namespace OysterCard.Core.DTO
+namespace OysterCard.Core.Mappings
 {
     public static class MappingConfiguration
     {

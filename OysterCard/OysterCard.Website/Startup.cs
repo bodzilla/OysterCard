@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OysterCard.Core.DTO;
+using OysterCard.Core.Mappings;
 using OysterCard.Core.Models;
 using OysterCard.Persistence;
 using SmartBreadcrumbs;

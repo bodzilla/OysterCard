@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OysterCard.Core.Contracts.Repositories;
-using OysterCard.Core.UOW;
+using OysterCard.Core.Contracts.UOW;
 using OysterCard.Persistence.Repositories;
 
 namespace OysterCard.Persistence.UOW
 {
-    /// <inheritdoc cref="IUserUOW" />
+    /// <inheritdoc cref="IOysterUOW" />
     public sealed class OysterUOW : GenericUOW, IOysterUOW
     {
         /// <inheritdoc />

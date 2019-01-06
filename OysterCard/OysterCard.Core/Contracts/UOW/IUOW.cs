@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace OysterCard.Core.UOW
+namespace OysterCard.Core.Contracts.UOW
 {
     /// <inheritdoc />
     /// <summary>

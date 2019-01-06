@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using OysterCard.Core.UOW;
+using OysterCard.Core.Contracts.UOW;
 
 namespace OysterCard.Persistence.UOW
 {

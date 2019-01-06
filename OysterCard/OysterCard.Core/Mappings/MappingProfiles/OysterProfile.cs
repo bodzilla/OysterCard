@@ -1,10 +1,11 @@
 ﻿using System;
 using AutoMapper;
+using OysterCard.Core.DTO;
 using OysterCard.Core.Enums;
 using OysterCard.Core.Models;
 using OysterCard.Core.ViewModels;
 
-namespace OysterCard.Core.DTO.MappingProfiles
+namespace OysterCard.Core.Mappings.MappingProfiles
 {
     /// <inheritdoc />
     public sealed class OysterProfile : Profile

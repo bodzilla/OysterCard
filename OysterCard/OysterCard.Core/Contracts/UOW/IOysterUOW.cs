@@ -1,7 +1,7 @@
 ﻿using OysterCard.Core.Contracts.Repositories;
 using OysterCard.Core.Models;
 
-namespace OysterCard.Core.UOW
+namespace OysterCard.Core.Contracts.UOW
 {
     /// <inheritdoc />
     /// <summary>

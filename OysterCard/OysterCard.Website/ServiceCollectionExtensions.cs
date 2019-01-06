@@ -2,8 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using OysterCard.Core.Contracts.Repositories;
 using OysterCard.Core.Contracts.Services;
+using OysterCard.Core.Contracts.UOW;
 using OysterCard.Core.Services;
-using OysterCard.Core.UOW;
 using OysterCard.Persistence;
 using OysterCard.Persistence.Repositories;
 using OysterCard.Persistence.UOW;
