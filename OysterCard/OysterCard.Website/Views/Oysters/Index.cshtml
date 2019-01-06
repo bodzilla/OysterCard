@@ -9,41 +9,41 @@
 <h1>Dashboard</h1>
 @if (@Model.Oysters.Any())
 {
-    <div class="alert alert-info" role="alert">
+    <h5 class="alert alert-info text-center" role="alert">
         You currently have @Model.Oysters.Count() Oysters.
-    </div>
+    </h5>
 }
 else
 {
     <h5 class="alert alert-warning text-center" role="alert">You don't have any active Oysters</h5>
-    <div class="card-deck">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Oyster services</h5>
-                <p class="card-text">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a asp-area="" asp-controller="Oysters" asp-action="">Top up</a></li>
-                        <li class="list-group-item"><a asp-area="" asp-controller="Oysters" asp-action="">Travel cards</a></li>
-                        <li class="list-group-item"><a asp-area="" asp-controller="Oysters" asp-action="">Transfer ownership</a></li>
-                    </ul>
-                </p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <a asp-area="" asp-controller="Oysters" asp-action="Apply">
-                    <h5 class="card-title">Apply for an Oyster</h5>
-                </a>
-                <p class="card-text">Top up, buy travel cards, track journeys and manage your Oyster.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <a asp-area="" asp-controller="Oysters" asp-action="Status">
-                    <h5 class="card-title">Oyster applications</h5>
-                </a>
-                <p class="card-text">View the status of, amend or cancel existing Oyster applications.</p>
-            </div>
+}
+<div class="card-deck">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Oyster services</h5>
+            <p class="card-text">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a asp-area="" asp-controller="Oysters" asp-action="">Top up</a></li>
+                    <li class="list-group-item"><a asp-area="" asp-controller="Oysters" asp-action="">Travel cards</a></li>
+                    <li class="list-group-item"><a asp-area="" asp-controller="Oysters" asp-action="">Transfer ownership</a></li>
+                </ul>
+            </p>
         </div>
     </div>
-}
+    <div class="card">
+        <div class="card-body">
+            <a asp-area="" asp-controller="Oysters" asp-action="Apply">
+                <h5 class="card-title">Apply for an Oyster</h5>
+            </a>
+            <p class="card-text">Top up, buy travel cards, track journeys and manage your Oyster.</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <a asp-area="" asp-controller="Oysters" asp-action="Status">
+                <h5 class="card-title">Oyster applications</h5>
+            </a>
+            <p class="card-text">View the status of, amend or cancel existing Oyster applications.</p>
+        </div>
+    </div>
+</div>
