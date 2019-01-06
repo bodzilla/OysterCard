@@ -7,7 +7,6 @@ using Moq;
 using NUnit.Framework;
 using OysterCard.Core.Contracts.UOW;
 using OysterCard.Core.DTO;
-using OysterCard.Core.Mappings;
 using OysterCard.Core.Models;
 using OysterCard.Core.Services;
 
@@ -16,7 +15,6 @@ namespace OysterCard.UnitTests.Services
     [TestFixture]
     public class UserServiceTests
     {
-        private bool _configured;
         private Mock<IUserUOW> _unitOfWork;
         private UserService _service;
 
@@ -24,11 +22,7 @@ namespace OysterCard.UnitTests.Services
         public void Setup()
         {
             // First, set up all the mappings.
-            if (!_configured)
-            {
-                MappingConfiguration.Configure();
-                _configured = true;
-            }
+            ServicesInitializer.ConfigureMappings();
 
             // Assign a mocked unit of work to the user service.
             _unitOfWork = new Mock<IUserUOW>();
