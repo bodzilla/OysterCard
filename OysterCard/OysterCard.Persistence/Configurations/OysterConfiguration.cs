@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OysterCard.Core.Models;
 
@@ -12,6 +13,9 @@ namespace OysterCard.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Oyster> builder)
         {
+            builder.Property(x => x.EntityCreated).HasDefaultValue(DateTime.Now);
+            builder.Property(x => x.EntityActive).HasDefaultValue(true);
+
             builder.Property(x => x.EntityVersion)
                 .IsConcurrencyToken()
                 .IsRowVersion();
@@ -21,6 +25,8 @@ namespace OysterCard.Persistence.Configurations
 
             builder.Property(x => x.Surname).IsRequired()
                 .HasMaxLength(255);
+
+            builder.Property(x => x.DateOfBirth).IsRequired();
 
             builder.Property(x => x.Address).IsRequired()
                 .HasMaxLength(255);

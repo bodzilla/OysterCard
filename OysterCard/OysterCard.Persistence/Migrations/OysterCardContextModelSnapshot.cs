@@ -121,12 +121,18 @@ namespace OysterCard.Persistence.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<DateTime>("DateOfBirth");
+
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
-                    b.Property<bool>("EntityActive");
+                    b.Property<bool>("EntityActive")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(true);
 
-                    b.Property<DateTime>("EntityCreated");
+                    b.Property<DateTime>("EntityCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2019, 1, 7, 9, 35, 26, 340, DateTimeKind.Local).AddTicks(8431));
 
                     b.Property<byte[]>("EntityVersion")
                         .IsConcurrencyToken()
@@ -135,6 +141,8 @@ namespace OysterCard.Persistence.Migrations
                     b.Property<string>("Forename")
                         .IsRequired()
                         .HasMaxLength(255);
+
+                    b.Property<int>("OysterType");
 
                     b.Property<string>("PostCode")
                         .IsRequired()
@@ -195,9 +203,13 @@ namespace OysterCard.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("EntityActive");
+                    b.Property<bool>("EntityActive")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(true);
 
-                    b.Property<DateTime>("EntityCreated");
+                    b.Property<DateTime>("EntityCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2019, 1, 7, 9, 35, 26, 324, DateTimeKind.Local).AddTicks(2739));
 
                     b.Property<byte[]>("EntityVersion")
                         .IsConcurrencyToken()
@@ -236,9 +248,13 @@ namespace OysterCard.Persistence.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<bool>("EntityActive");
+                    b.Property<bool>("EntityActive")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(true);
 
-                    b.Property<DateTime>("EntityCreated");
+                    b.Property<DateTime>("EntityCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2019, 1, 7, 9, 35, 26, 333, DateTimeKind.Local).AddTicks(9573));
 
                     b.Property<byte[]>("EntityVersion");
 

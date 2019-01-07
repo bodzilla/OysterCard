@@ -29,12 +29,7 @@ namespace OysterCard.Persistence.Repositories
         /// <inheritdoc />
         public virtual async Task AddAsync(params T[] entities)
         {
-            foreach (T entity in entities)
-            {
-                entity.EntityActive = true;
-                entity.EntityCreated = DateTime.Now;
-                await Context.Set<T>().AddAsync(entity);
-            }
+            foreach (T entity in entities) await Context.Set<T>().AddAsync(entity);
         }
 
         /// <inheritdoc />
@@ -73,12 +68,7 @@ namespace OysterCard.Persistence.Repositories
         /// <inheritdoc />
         public virtual void Add(params T[] entities)
         {
-            foreach (T entity in entities)
-            {
-                entity.EntityActive = true;
-                entity.EntityCreated = DateTime.Now;
-                Context.Set<T>().Add(entity);
-            }
+            foreach (T entity in entities) Context.Set<T>().Add(entity);
         }
 
         /// <inheritdoc />

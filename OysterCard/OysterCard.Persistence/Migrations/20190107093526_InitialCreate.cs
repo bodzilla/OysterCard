@@ -44,8 +44,8 @@ namespace OysterCard.Persistence.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    EntityCreated = table.Column<DateTime>(nullable: false),
-                    EntityActive = table.Column<bool>(nullable: false),
+                    EntityCreated = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 1, 7, 9, 35, 26, 333, DateTimeKind.Local).AddTicks(9573)),
+                    EntityActive = table.Column<bool>(nullable: false, defaultValue: true),
                     EntityVersion = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
@@ -59,8 +59,8 @@ namespace OysterCard.Persistence.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EntityCreated = table.Column<DateTime>(nullable: false),
-                    EntityActive = table.Column<bool>(nullable: false),
+                    EntityCreated = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 1, 7, 9, 35, 26, 324, DateTimeKind.Local).AddTicks(2739)),
+                    EntityActive = table.Column<bool>(nullable: false, defaultValue: true),
                     EntityVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     Key = table.Column<string>(maxLength: 255, nullable: false),
                     Value = table.Column<string>(maxLength: 2040, nullable: false)
@@ -182,16 +182,19 @@ namespace OysterCard.Persistence.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EntityCreated = table.Column<DateTime>(nullable: false),
-                    EntityActive = table.Column<bool>(nullable: false),
+                    EntityCreated = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 1, 7, 9, 35, 26, 340, DateTimeKind.Local).AddTicks(8431)),
+                    EntityActive = table.Column<bool>(nullable: false, defaultValue: true),
                     EntityVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     Forename = table.Column<string>(maxLength: 255, nullable: false),
                     Surname = table.Column<string>(maxLength: 255, nullable: false),
+                    DateOfBirth = table.Column<DateTime>(nullable: false),
                     Address = table.Column<string>(maxLength: 255, nullable: false),
                     City = table.Column<string>(maxLength: 100, nullable: false),
                     PostCode = table.Column<string>(maxLength: 10, nullable: false),
+                    OysterType = table.Column<int>(nullable: false),
                     Rate = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
                     Balance = table.Column<decimal>(type: "decimal(4,2)", nullable: false, defaultValue: 0m),
+                    Verified = table.Column<bool>(nullable: false, defaultValue: false),
                     UserId = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false)
                 },
