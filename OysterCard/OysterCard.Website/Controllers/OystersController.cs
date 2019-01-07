@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -65,7 +66,7 @@ namespace OysterCard.Website.Controllers
             && !x.Verified);
 
             ViewData["ApplicationSubmitted"] = applicationSubmitted;
-            return View(activeAndNonVerifiedOysters);
+            return View(activeAndNonVerifiedOysters.OrderByDescending(x => x.EntityCreated));
         }
     }
 }
