@@ -51,6 +51,7 @@ namespace OysterCard.Core.Mappings.MappingProfiles
         {
             oyster.Forename = oysterDto.Forename;
             oyster.Surname = oysterDto.Surname;
+            oyster.DateOfBirth = oysterDto.DateOfBirth;
             oyster.Address = oysterDto.Address;
             oyster.City = oysterDto.City;
             oyster.PostCode = oysterDto.PostCode;
@@ -94,6 +95,7 @@ namespace OysterCard.Core.Mappings.MappingProfiles
         {
             oyster.Forename = oysterApplicationVm.Forename;
             oyster.Surname = oysterApplicationVm.Surname;
+            oyster.DateOfBirth = oysterApplicationVm.DateOfBirth;
             oyster.Address = oysterApplicationVm.Address;
             oyster.City = oysterApplicationVm.City;
             oyster.PostCode = oysterApplicationVm.PostCode;

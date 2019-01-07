@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OysterCard.Core", "OysterCa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OysterCard.Persistence", "OysterCard.Persistence\OysterCard.Persistence.csproj", "{F51E6EF8-9BB9-4384-9E7F-38B95A3EBF3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OysterCard.UnitTests", "OysterCard.UnitTests\OysterCard.UnitTests.csproj", "{301C97E8-76AD-449F-BC4A-DCC56F9158BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OysterCard.UnitTests", "OysterCard.UnitTests\OysterCard.UnitTests.csproj", "{301C97E8-76AD-449F-BC4A-DCC56F9158BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
