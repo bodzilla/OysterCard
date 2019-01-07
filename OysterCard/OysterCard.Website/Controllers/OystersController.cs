@@ -34,7 +34,7 @@ namespace OysterCard.Website.Controllers
             && x.EntityActive
             && x.Verified);
 
-            return View(activeAndVerifiedOysters);
+            return View(activeAndVerifiedOysters.OrderByDescending(x => x.EntityCreated));
         }
 
         [Breadcrumb("Apply for an Oyster")]
