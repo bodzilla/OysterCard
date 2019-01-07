@@ -11,7 +11,7 @@
 @if ((bool)ViewData["ApplicationSubmitted"])
 {
     <h5 class="alert alert-success text-center alert-dismissible fade show" role="alert">
-        Success! Your application has been submitted.
+        Your application has been submitted.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </h5>
 }
@@ -25,7 +25,7 @@
     {
         <h5 class="alert alert-info text-center" role="alert">You have @Model.Count() active application.</h5>
     }
-    <div class="card-deck">
+    <div class="row">
         @foreach (var oyster in Model)
         {
             <partial name="_OysterApplicationPartial" model="oyster" />

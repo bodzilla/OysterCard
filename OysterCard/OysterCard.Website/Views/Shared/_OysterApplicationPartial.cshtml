@@ -1,21 +1,23 @@
 ﻿@model OysterCard.Core.DTO.OysterDTO
 
-<div class="card shadow-sm my-3" style="min-width: 350px;max-width: 350px">
-    <img class="card-img-top" src="~/res/img/oystericon.png" alt="Oyster">
-    <div class="card-body">
-        <h5 class="card-title text-center">@Model.Forename @Model.Surname</h5>
-        <p class="card-text text-center">@Model.Address, @Model.City, @Model.PostCode</p>
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Born on @Model.DateOfBirth.ToLongDateString()</li>
-        <li class="list-group-item">@Model.OysterType Oyster</li>
-        <li class="list-group-item">£@Model.Rate per journey</li>
-    </ul>
-    <div class="card-body">
-        <!--TODO: Add status badge to Oyster -->
-        <!--TODO: Cancelled, In review, Declined -->
-        <p><span class="badge badge-info">In review</span></p>
-        <p class="card-text"><small class="text-muted">Applied on @Model.EntityCreated.ToLongDateString()</small></p>
-        <a href="#">Withdraw application</a>
+<div class="col-md-4 col-xs-6 my-3">
+    <div class="card shadow-sm">
+        <img class="card-img-top" src="~/res/img/oystericon.png" alt="Oyster">
+        <div class="card-body">
+            <h5 class="card-title text-center">@Model.Forename @Model.Surname</h5>
+            <p class="card-text text-center">@Model.Address, @Model.City, @Model.PostCode</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Born on @Model.DateOfBirth.ToLongDateString()</li>
+            <li class="list-group-item">@Model.OysterType Oyster</li>
+            <li class="list-group-item">£@Model.Rate per journey</li>
+        </ul>
+        <div class="card-body">
+            <!--TODO: Add status badge to Oyster -->
+            <!--TODO: Cancelled, In review, Declined -->
+            <p><span class="badge badge-info">In review</span></p>
+            <p class="card-text"><small class="text-muted">Applied on @Model.EntityCreated.ToLongDateString()</small></p>
+            <a href="#">Withdraw application</a>
+        </div>
     </div>
 </div>
