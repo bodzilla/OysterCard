@@ -18,8 +18,8 @@ An ASP.NET Core 2 MVC web application for TfL's Oyster services.
 - JavaScript - jQuery
 - Bootstrap
 - Log4Net
+- Unit testing
 
 ## To-do ##
-- Unit testing
 - Web API
 - AngularJS / ReactJS
