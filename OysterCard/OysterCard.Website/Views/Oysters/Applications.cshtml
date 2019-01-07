@@ -17,7 +17,14 @@
 }
 @if (Model.Any())
 {
-    <h5 class="alert alert-info text-center" role="alert">You have @Model.Count() active applications.</h5>
+    if (Model.Count() > 1)
+    {
+        <h5 class="alert alert-info text-center" role="alert">You have @Model.Count() active applications.</h5>
+    }
+    else
+    {
+        <h5 class="alert alert-info text-center" role="alert">You have @Model.Count() active application.</h5>
+    }
     <div class="card-deck">
         @foreach (var oyster in Model)
         {

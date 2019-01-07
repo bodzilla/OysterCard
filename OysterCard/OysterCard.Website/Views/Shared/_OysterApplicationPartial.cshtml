@@ -7,7 +7,7 @@
         <p class="card-text text-center">@Model.Address, @Model.City, @Model.PostCode</p>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Born on @Model.DateOfBirth.ToString("dd/MM/yyyy")</li>
+        <li class="list-group-item">Born on @Model.DateOfBirth.ToLongDateString()</li>
         <li class="list-group-item">@Model.OysterType Oyster</li>
         <li class="list-group-item">£@Model.Rate / journey</li>
     </ul>
@@ -15,7 +15,7 @@
         <!--TODO: Add status badge to Oyster -->
         <!--TODO: Cancelled, In review, Declined -->
         <p><span class="badge badge-info">In review</span></p>
-        <p class="card-text"><small class="text-muted">Created on @Model.EntityCreated.ToString("dd/MM/yyyy")</small></p>
-        <a href="#" class="card-link">Withdraw application</a>
+        <p class="card-text"><small class="text-muted">Created on @Model.EntityCreated.ToLongDateString()</small></p>
+        <a href="#">Withdraw application</a>
     </div>
 </div>
