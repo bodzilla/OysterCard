@@ -117,3 +117,8 @@ a.text-dark:hover, a.text-dark:focus {
         .show > .btn-outline-dark.dropdown-toggle:focus {
             box-shadow: none;
         }
+
+.card-icon {
+    width: 30%;
+    height: auto;
+}

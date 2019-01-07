@@ -8,7 +8,7 @@
 <hr />
 <h1>Oyster applications</h1>
 <br />
-@if ((bool)@ViewData["ApplicationSubmitted"])
+@if ((bool)ViewData["ApplicationSubmitted"])
 {
     <h5 class="alert alert-success text-center alert-dismissible fade show" role="alert">
         Success! Your application has been submitted.
@@ -17,11 +17,15 @@
         </button>
     </h5>
 }
-@if (@Model.Any())
+@if (Model.Any())
 {
-    <h5 class="alert alert-info text-center" role="alert">
-        You currently have @Model.Count() active Oyster applications.
-    </h5>
+    <h5 class="alert alert-info text-center" role="alert">You have @Model.Count() active applications.</h5>
+    <div class="card-deck">
+        @foreach (var oyster in Model)
+        {
+            <partial name="_OysterApplicationPartial" model="oyster" />
+        }
+    </div>
 }
 else
 {

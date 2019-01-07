@@ -10,16 +10,14 @@
 <br />
 @if (@Model.Any())
 {
-    <h5 class="alert alert-info text-center" role="alert">
-        You currently have @Model.Count() Oysters.
-    </h5>
+    <h5 class="alert alert-info text-center" role="alert">You currently have @Model.Count() Oysters.</h5>
 }
 else
 {
-    <h5 class="alert alert-warning text-center" role="alert">You don't have any active Oysters</h5>
+    <h5 class="alert alert-warning text-center" role="alert">You don't have any active Oysters.</h5>
 }
 <div class="card-deck">
-    <div class="card">
+    <div class="card shadow-sm">
         <div class="card-body">
             <h5 class="card-title">Oyster services</h5>
             <p class="card-text">
@@ -31,7 +29,7 @@ else
             </p>
         </div>
     </div>
-    <div class="card">
+    <div class="card shadow-sm">
         <div class="card-body">
             <a asp-area="" asp-controller="Oysters" asp-action="Apply">
                 <h5 class="card-title">Apply for an Oyster</h5>
@@ -39,7 +37,7 @@ else
             <p class="card-text">By applying, you'll be able to top up, buy travel cards, track journeys and manage your Oyster.</p>
         </div>
     </div>
-    <div class="card">
+    <div class="card shadow-sm">
         <div class="card-body">
             <a asp-area="" asp-controller="Oysters" asp-action="Applications">
                 <h5 class="card-title">Oyster applications</h5>

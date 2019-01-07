@@ -14,9 +14,12 @@
     You can use it to pay as you go to travel on bus, Tube, tram, DLR, London Overground, TfL Rail, Emirates Air Line and River Bus.
     You can also travel on most National Rail services in London and some outside London.
 </p>
-<br />
-<div class="card col-md-4">
+<div class="card col-md-4 shadow-sm">
     <div class="card-body">
+        <div class="card-title">
+            All fields are required.
+        </div>
+        <hr />
         <form id="oyster-application" asp-controller="Oysters" asp-action="ApplyForOyster" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
