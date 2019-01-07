@@ -7,6 +7,7 @@ using Moq;
 using NUnit.Framework;
 using OysterCard.Core.Contracts.UOW;
 using OysterCard.Core.DTO;
+using OysterCard.Core.Enums;
 using OysterCard.Core.Models;
 using OysterCard.Core.Services;
 
@@ -30,7 +31,7 @@ namespace OysterCard.UnitTests.Services
         }
 
         [Test]
-        public async Task GetAllAsync_GetAllOysterDtoAsync_ReturnsThreeUserDto()
+        public async Task GetAllAsync_GetAllOysterDtoAsync_ReturnsThreeOysterDto()
         {
             // Set up sample data.
             var data = new List<Oyster>
@@ -49,7 +50,7 @@ namespace OysterCard.UnitTests.Services
         }
 
         [Test]
-        public async Task GetListAsync_GetListOfOysterDtoAsync_ReturnsThreeUserDto()
+        public async Task GetListAsync_GetListOfOysterDtoAsync_ReturnsThreeOysterDto()
         {
             // Set up sample data.
             var data = new List<Oyster>
@@ -65,6 +66,96 @@ namespace OysterCard.UnitTests.Services
 
             Assert.That(oysters, Is.TypeOf<List<OysterDTO>>());
             Assert.That(oysters.Count, Is.EqualTo(3));
+        }
+
+        [Test]
+        public async Task GetAsync_GetOysterDtoJuniorAsync_ReturnsOysterDtoJunior()
+        {
+            // Set up sample data.
+            var data = new OysterJunior { Id = 1, Forename = "Test1" };
+
+            // Ensure this method returns the sample data.
+            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>())).ReturnsAsync(data);
+
+            var result = await _service.GetAsync(x => x.EntityActive);
+
+            Assert.That(result, Is.TypeOf<OysterDTO>());
+            Assert.That(result.OysterType, Is.EqualTo(OysterType.Junior));
+        }
+
+        [Test]
+        public async Task GetAsync_GetOysterDtoAdultAsync_ReturnsOysterDtoAdult()
+        {
+            // Set up sample data.
+            var data = new OysterAdult { Id = 1, Forename = "Test1" };
+
+            // Ensure this method returns the sample data.
+            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>())).ReturnsAsync(data);
+
+            var result = await _service.GetAsync(x => x.EntityActive);
+
+            Assert.That(result, Is.TypeOf<OysterDTO>());
+            Assert.That(result.OysterType, Is.EqualTo(OysterType.Adult));
+        }
+
+        [Test]
+        public async Task GetAsync_GetOysterDtoSeniorAsync_ReturnsOysterDtoSenior()
+        {
+            // Set up sample data.
+            var data = new OysterSenior { Id = 1, Forename = "Test1" };
+
+            // Ensure this method returns the sample data.
+            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>())).ReturnsAsync(data);
+
+            var result = await _service.GetAsync(x => x.EntityActive);
+
+            Assert.That(result, Is.TypeOf<OysterDTO>());
+            Assert.That(result.OysterType, Is.EqualTo(OysterType.Senior));
+        }
+
+        [Test]
+        public async Task GetAsync_GetOysterDtoJuniorAsync_ReturnsOysterDtoAsWrongOysterType()
+        {
+            // Set up sample data.
+            var data = new OysterAdult { Id = 1, Forename = "Test1" };
+
+            // Ensure this method returns the sample data.
+            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>())).ReturnsAsync(data);
+
+            var result = await _service.GetAsync(x => x.EntityActive);
+
+            Assert.That(result, Is.TypeOf<OysterDTO>());
+            Assert.That(result.OysterType, Is.Not.EqualTo(OysterType.Junior));
+        }
+
+        [Test]
+        public async Task GetAsync_GetOysterDtoAdultAsync_ReturnsOysterDtoAsWrongOysterType()
+        {
+            // Set up sample data.
+            var data = new OysterSenior { Id = 1, Forename = "Test1" };
+
+            // Ensure this method returns the sample data.
+            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>())).ReturnsAsync(data);
+
+            var result = await _service.GetAsync(x => x.EntityActive);
+
+            Assert.That(result, Is.TypeOf<OysterDTO>());
+            Assert.That(result.OysterType, Is.Not.EqualTo(OysterType.Adult));
+        }
+
+        [Test]
+        public async Task GetAsync_GetOysterDtoSeniorAsync_ReturnsOysterDtoAsWrongOysterType()
+        {
+            // Set up sample data.
+            var data = new OysterJunior { Id = 1, Forename = "Test1" };
+
+            // Ensure this method returns the sample data.
+            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>())).ReturnsAsync(data);
+
+            var result = await _service.GetAsync(x => x.EntityActive);
+
+            Assert.That(result, Is.TypeOf<OysterDTO>());
+            Assert.That(result.OysterType, Is.Not.EqualTo(OysterType.Senior));
         }
     }
 }

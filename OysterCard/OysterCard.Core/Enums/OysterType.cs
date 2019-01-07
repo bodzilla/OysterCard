@@ -5,8 +5,8 @@
     /// </summary>
     public enum OysterType
     {
-        Junior,
-        Adult,
-        Senior
+        Junior = 0,
+        Adult = 1,
+        Senior = 2
     }
 }
