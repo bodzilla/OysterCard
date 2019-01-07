@@ -44,7 +44,7 @@ namespace OysterCard.Persistence.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    EntityCreated = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 1, 7, 9, 35, 26, 333, DateTimeKind.Local).AddTicks(9573)),
+                    EntityCreated = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
                     EntityActive = table.Column<bool>(nullable: false, defaultValue: true),
                     EntityVersion = table.Column<byte[]>(nullable: true)
                 },
@@ -59,7 +59,7 @@ namespace OysterCard.Persistence.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EntityCreated = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 1, 7, 9, 35, 26, 324, DateTimeKind.Local).AddTicks(2739)),
+                    EntityCreated = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
                     EntityActive = table.Column<bool>(nullable: false, defaultValue: true),
                     EntityVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     Key = table.Column<string>(maxLength: 255, nullable: false),
@@ -182,7 +182,7 @@ namespace OysterCard.Persistence.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EntityCreated = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 1, 7, 9, 35, 26, 340, DateTimeKind.Local).AddTicks(8431)),
+                    EntityCreated = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
                     EntityActive = table.Column<bool>(nullable: false, defaultValue: true),
                     EntityVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     Forename = table.Column<string>(maxLength: 255, nullable: false),

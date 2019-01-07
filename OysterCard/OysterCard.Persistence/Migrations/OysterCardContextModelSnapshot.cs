@@ -132,7 +132,7 @@ namespace OysterCard.Persistence.Migrations
 
                     b.Property<DateTime>("EntityCreated")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2019, 1, 7, 9, 35, 26, 340, DateTimeKind.Local).AddTicks(8431));
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<byte[]>("EntityVersion")
                         .IsConcurrencyToken()
@@ -209,7 +209,7 @@ namespace OysterCard.Persistence.Migrations
 
                     b.Property<DateTime>("EntityCreated")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2019, 1, 7, 9, 35, 26, 324, DateTimeKind.Local).AddTicks(2739));
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<byte[]>("EntityVersion")
                         .IsConcurrencyToken()
@@ -254,7 +254,7 @@ namespace OysterCard.Persistence.Migrations
 
                     b.Property<DateTime>("EntityCreated")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2019, 1, 7, 9, 35, 26, 333, DateTimeKind.Local).AddTicks(9573));
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<byte[]>("EntityVersion");
 

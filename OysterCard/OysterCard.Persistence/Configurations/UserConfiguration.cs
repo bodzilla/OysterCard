@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OysterCard.Core.Models;
 
@@ -13,7 +12,7 @@ namespace OysterCard.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.Property(x => x.EntityCreated).HasDefaultValue(DateTime.Now);
+            builder.Property(x => x.EntityCreated).HasDefaultValueSql("getdate()");
             builder.Property(x => x.EntityActive).HasDefaultValue(true);
             builder.HasIndex(x => x.Email).IsUnique();
             builder.HasIndex(x => x.NormalizedEmail).IsUnique();
