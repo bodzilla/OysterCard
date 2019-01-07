@@ -13,8 +13,8 @@ namespace OysterCard.Core.Models
         /// <inheritdoc />
         public OysterJunior()
         {
-            _oysterType = OysterType.Junior;
-            _rate = 1;
+            OysterType = OysterType.Junior;
+            Rate = 1;
         }
 
         #endregion

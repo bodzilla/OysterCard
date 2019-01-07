@@ -11,20 +11,6 @@ namespace OysterCard.Core.Models
     /// </summary>
     public abstract class Oyster : IEntity
     {
-        #region Private Members
-
-        /// <summary>
-        /// The oyster type.
-        /// </summary>
-        protected OysterType _oysterType;
-
-        /// <summary>
-        /// The rate of cost for each travel.
-        /// </summary>
-        protected decimal _rate = 0;
-
-        #endregion
-
         #region Public Properties
 
         /// <inheritdoc />
@@ -69,12 +55,12 @@ namespace OysterCard.Core.Models
         /// <summary>
         /// The oyster type.
         /// </summary>
-        public OysterType OysterType => _oysterType;
+        public OysterType OysterType { get; protected set; }
 
         /// <summary>
         /// The rate of cost for each travel.
         /// </summary>
-        public decimal Rate => _rate;
+        public decimal Rate { get; protected set; }
 
         /// <summary>
         /// The current balance.
