@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OysterCard.Persistence.Migrations
 {
@@ -21,13 +20,13 @@ namespace OysterCard.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder
-                .Sql($"INSERT INTO [dbo].[Settings] ([EntityCreated], [EntityActive], [Key], [Value]) VALUES ('{DateTime.Now}', 1, '{_lowerAgeLimitJunior}', '0');");
+                .Sql($"INSERT INTO [dbo].[Settings] ([EntityCreated], [EntityActive], [Key], [Value]) VALUES (getdate(), 1, '{_lowerAgeLimitJunior}', '0');");
             migrationBuilder
-                .Sql($"INSERT INTO [dbo].[Settings] ([EntityCreated], [EntityActive], [Key], [Value]) VALUES ('{DateTime.Now}', 1, '{_upperAgeLimitJunior}', '15');");
+                .Sql($"INSERT INTO [dbo].[Settings] ([EntityCreated], [EntityActive], [Key], [Value]) VALUES (getdate(), 1, '{_upperAgeLimitJunior}', '15');");
             migrationBuilder
-                .Sql($"INSERT INTO [dbo].[Settings] ([EntityCreated], [EntityActive], [Key], [Value]) VALUES ('{DateTime.Now}', 1, '{_lowerAgeLimitAdult}', '16');");
+                .Sql($"INSERT INTO [dbo].[Settings] ([EntityCreated], [EntityActive], [Key], [Value]) VALUES (getdate(), 1, '{_lowerAgeLimitAdult}', '16');");
             migrationBuilder
-                .Sql($"INSERT INTO [dbo].[Settings] ([EntityCreated], [EntityActive], [Key], [Value]) VALUES ('{DateTime.Now}', 1, '{_upperAgeLimitAdult}', '74');");
+                .Sql($"INSERT INTO [dbo].[Settings] ([EntityCreated], [EntityActive], [Key], [Value]) VALUES (getdate(), 1, '{_upperAgeLimitAdult}', '74');");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -35,11 +34,11 @@ namespace OysterCard.Persistence.Migrations
             migrationBuilder
                 .Sql($"DELETE FROM [dbo].[Settings] WHERE [Key] = '{_lowerAgeLimitJunior}';");
             migrationBuilder
-                   .Sql($"DELETE FROM [dbo].[Settings] WHERE [Key] = '{_upperAgeLimitJunior}';");
+                .Sql($"DELETE FROM [dbo].[Settings] WHERE [Key] = '{_upperAgeLimitJunior}';");
             migrationBuilder
-                   .Sql($"DELETE FROM [dbo].[Settings] WHERE [Key] = '{_lowerAgeLimitAdult}';");
+                .Sql($"DELETE FROM [dbo].[Settings] WHERE [Key] = '{_lowerAgeLimitAdult}';");
             migrationBuilder
-                   .Sql($"DELETE FROM [dbo].[Settings] WHERE [Key] = '{_upperAgeLimitAdult}';");
+                .Sql($"DELETE FROM [dbo].[Settings] WHERE [Key] = '{_upperAgeLimitAdult}';");
         }
     }
 }
