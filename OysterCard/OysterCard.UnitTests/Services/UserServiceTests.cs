@@ -34,7 +34,11 @@ namespace OysterCard.UnitTests.Services
         {
             // Set up sample data.
             var data = new List<User>
-            { new User { Id = 1, Email = "test1@test.com" }, new User { Id = 2, Email = "test2@test.com" }, new User { Id = 3, Email = "test3@test.com" } };
+            {
+                new User { Id = 1, Email = "test1@test.com" },
+                new User { Id = 2, Email = "test2@test.com" },
+                new User { Id = 3, Email = "test3@test.com" }
+            };
 
             // Ensure this method returns the sample data.
             _unitOfWork.Setup(x => x.Users.GetAllAsync()).ReturnsAsync(data);
@@ -54,7 +58,7 @@ namespace OysterCard.UnitTests.Services
         public async Task GetByIdAsync_GetUserDtoByIdAsync_ReturnsUserDto(int id)
         {
             // Set up sample data.
-            var data = new User { Id = id, Email = "test1@test.com" };
+            var data = new User {Id = id, Email = "test1@test.com" };
 
             // Ensure this method returns the sample data when any param of below type is passed in.
             _unitOfWork.Setup(x => x.Users.GetAsync(It.IsAny<Expression<Func<User, bool>>>())).ReturnsAsync(data);

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
@@ -31,7 +33,11 @@ namespace OysterCard.UnitTests.Services
         {
             // Set up sample data.
             var data = new List<Settings>
-            { new Settings { Id = 1, Key = "Key1", Value = "Value1"}, new Settings { Id = 2, Key = "Key2", Value = "Value2"}, new Settings { Id = 3, Key = "Key3", Value = "Value3"} };
+            {
+                new Settings { Id = 1, Key = "Key1", Value = "Value1"},
+                new Settings { Id = 2, Key = "Key2", Value = "Value2"},
+                new Settings { Id = 3, Key = "Key3", Value = "Value3"}
+            };
 
             // Ensure this method returns the sample data.
             _unitOfWork.Setup(x => x.Settings.GetAllAsync()).ReturnsAsync(data);
@@ -43,6 +49,31 @@ namespace OysterCard.UnitTests.Services
 
             Assert.That(settings, Is.TypeOf<List<Settings>>());
             Assert.That(settings.Count, Is.EqualTo(3));
+        }
+
+        [Test]
+        public async Task GetOysterTypeAgeLimitsAsync_GetOysterTypeAgeLimitSettingsAsync_ReturnsFourAgeLimitSettings()
+        {
+            // Set up sample data.
+            var data = new List<Settings>
+                {
+                    new Settings { Id = 1, Key = "LowerAgeLimitJunior", Value = "0"},
+                    new Settings { Id = 2, Key = "UpperAgeLimitJunior", Value = "15"},
+                    new Settings { Id = 3, Key = "LowerAgeLimitAdult", Value = "16"},
+                    new Settings { Id = 4, Key = "UpperAgeLimitAdult", Value = "74"}
+                };
+
+            // Ensure this method returns the sample data.
+            _unitOfWork.Setup(x => x.Settings.GetListAsync(It.IsAny<Expression<Func<Settings, bool>>>(), It.IsAny<Expression<Func<Settings, object>>[]>()))
+                .ReturnsAsync(data);
+
+            var result = await _service.GetOysterTypeAgeLimitsAsync();
+
+            // Cast to list to make assertions.
+            var settings = result as IList<Settings> ?? result.ToList();
+
+            Assert.That(settings, Is.TypeOf<List<Settings>>());
+            Assert.That(settings.Count, Is.EqualTo(4));
         }
     }
 }

@@ -35,7 +35,11 @@ namespace OysterCard.UnitTests.Services
         {
             // Set up sample data.
             var data = new List<Oyster>
-            { new OysterAdult { Id = 1, Forename = "Test1" }, new OysterJunior { Id = 2, Forename = "Test2" }, new OysterSenior { Id = 3, Forename = "Test3" } };
+            {
+                new OysterAdult { Id = 1, Forename = "Test1" },
+                new OysterJunior { Id = 2, Forename = "Test2" },
+                new OysterSenior { Id = 3, Forename = "Test3" }
+            };
 
             // Ensure this method returns the sample data.
             _unitOfWork.Setup(x => x.Oysters.GetAllAsync()).ReturnsAsync(data);
@@ -54,10 +58,15 @@ namespace OysterCard.UnitTests.Services
         {
             // Set up sample data.
             var data = new List<Oyster>
-            { new OysterAdult { Id = 1, Forename = "Test1" }, new OysterJunior { Id = 2, Forename = "Test2" }, new OysterSenior { Id = 3, Forename = "Test3" } };
+            {
+                new OysterAdult { Id = 1, Forename = "Test1" },
+                new OysterJunior { Id = 2, Forename = "Test2" },
+                new OysterSenior { Id = 3, Forename = "Test3" }
+            };
 
             // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetListAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>())).ReturnsAsync(data);
+            _unitOfWork.Setup(x => x.Oysters.GetListAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
+                .ReturnsAsync(data);
 
             var result = await _service.GetListAsync(x => x.EntityActive);
 
@@ -75,7 +84,8 @@ namespace OysterCard.UnitTests.Services
             var data = new OysterJunior { Id = 1, Forename = "Test1" };
 
             // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>())).ReturnsAsync(data);
+            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
+                .ReturnsAsync(data);
 
             var result = await _service.GetAsync(x => x.EntityActive);
 
@@ -90,7 +100,8 @@ namespace OysterCard.UnitTests.Services
             var data = new OysterAdult { Id = 1, Forename = "Test1" };
 
             // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>())).ReturnsAsync(data);
+            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
+                .ReturnsAsync(data);
 
             var result = await _service.GetAsync(x => x.EntityActive);
 
@@ -105,7 +116,8 @@ namespace OysterCard.UnitTests.Services
             var data = new OysterSenior { Id = 1, Forename = "Test1" };
 
             // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>())).ReturnsAsync(data);
+            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
+                .ReturnsAsync(data);
 
             var result = await _service.GetAsync(x => x.EntityActive);
 
@@ -120,7 +132,8 @@ namespace OysterCard.UnitTests.Services
             var data = new OysterAdult { Id = 1, Forename = "Test1" };
 
             // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>())).ReturnsAsync(data);
+            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
+                .ReturnsAsync(data);
 
             var result = await _service.GetAsync(x => x.EntityActive);
 
@@ -135,7 +148,8 @@ namespace OysterCard.UnitTests.Services
             var data = new OysterSenior { Id = 1, Forename = "Test1" };
 
             // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>())).ReturnsAsync(data);
+            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
+                .ReturnsAsync(data);
 
             var result = await _service.GetAsync(x => x.EntityActive);
 
@@ -150,7 +164,8 @@ namespace OysterCard.UnitTests.Services
             var data = new OysterJunior { Id = 1, Forename = "Test1" };
 
             // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>())).ReturnsAsync(data);
+            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
+                .ReturnsAsync(data);
 
             var result = await _service.GetAsync(x => x.EntityActive);
 
