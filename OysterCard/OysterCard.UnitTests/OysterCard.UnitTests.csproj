@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OysterCard.Core\OysterCard.Core.csproj" />
+    <ProjectReference Include="..\OysterCard.Persistence\OysterCard.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
