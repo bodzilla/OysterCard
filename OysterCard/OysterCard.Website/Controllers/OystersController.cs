@@ -16,7 +16,7 @@ namespace OysterCard.Website.Controllers
 
         #region Default Constructor
 
-        public OystersController(IUserService userService, IOysterService oysterService) => _oysterService = oysterService;
+        public OystersController(IOysterService oysterService) => _oysterService = oysterService;
 
         #endregion
 
