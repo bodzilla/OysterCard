@@ -13,6 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OysterCard.UnitTests", "Oys
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{802A32BC-8DD7-428E-BF84-F4BE3C33ECA1}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\..\Desktop\dependencies.png = ..\..\..\..\..\..\Desktop\dependencies.png
 		..\..\..\..\..\..\Desktop\oystericon.psd = ..\..\..\..\..\..\Desktop\oystericon.psd
 	EndProjectSection
 EndProject
