@@ -16,5 +16,8 @@ namespace OysterCard.Core.Services
 
         /// <inheritdoc />
         public async Task<IEnumerable<Settings>> GetAllAsync() => await _unitOfWork.Settings.GetAllAsync();
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<Settings>> GetOysterTypeAgeLimitsAsync() => await _unitOfWork.Settings.GetListAsync(x => x.Key.Contains("AgeLimit"));
     }
 }

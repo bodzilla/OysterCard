@@ -27,7 +27,7 @@ namespace OysterCard.UnitTests.Services
 
             // Assign a mocked unit of work to the oyster service.
             _unitOfWork = new Mock<IOysterUOW>();
-            _service = new OysterService(_unitOfWork.Object);
+            _service = new OysterService(_unitOfWork.Object, settingsService: null);
         }
 
         [Test]

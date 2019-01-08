@@ -54,11 +54,6 @@
                 <span asp-validation-for="@Model.PostCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.OysterType"></label>
-                <select class="custom-select" asp-for="@Model.OysterType" asp-items="Html.GetEnumSelectList<OysterType>()"></select>
-                <span asp-validation-for="@Model.OysterType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <button type="submit" class="btn btn-primary">Submit application</button>
             </div>
         </form>

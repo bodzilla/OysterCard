@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using OysterCard.Core.DTO;
+using OysterCard.Core.Enums;
 using OysterCard.Core.Models;
 using OysterCard.Core.ViewModels;
 
@@ -38,6 +39,7 @@ namespace OysterCard.Core.Contracts.Services
 
         /// <summary>
         /// Creates <see cref="Oyster"/>s with verified state as false.
+        /// Sets the <see cref="OysterType"/> based on applicant's date of brith.
         /// </summary>
         /// <param name="oysters"></param>
         /// <returns></returns>
