@@ -1,6 +1,8 @@
 # OysterCard
 An ASP.NET Core 2 MVC web application for TfL's Oyster services.
 
+![alt text](https://i.imgur.com/kgVGHDx.png)
+
 ## Frameworks / Technology ##
 - .NET Core 2
 - MVC
