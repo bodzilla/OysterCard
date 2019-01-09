@@ -49,7 +49,10 @@ namespace OysterCard.Website.Controllers
         {
             if (!ModelState.IsValid) return View("Apply");
             oyster.UserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)); // Set the user's id.
+
+            // Do not need to set the oyster type for this object as this method will handle this.
             await _oysterService.CreateNonVerifiedAsync(oyster);
+
             return RedirectToAction("Applications", "Oysters", new { applicationSubmitted = true });
         }
 

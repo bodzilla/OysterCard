@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Moq;
@@ -43,12 +42,8 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.Settings.GetAllAsync()).ReturnsAsync(data);
 
             var result = await _service.GetAllAsync();
-
-            // Cast to list to make assertions.
-            var settings = result as IList<Settings> ?? result.ToList();
-
-            Assert.That(settings, Is.TypeOf<List<Settings>>());
-            Assert.That(settings.Count, Is.EqualTo(3));
+            Assert.That(result, Is.TypeOf<Dictionary<string, string>>());
+            Assert.That(result.Count, Is.EqualTo(3));
         }
 
         [Test]
@@ -70,10 +65,8 @@ namespace OysterCard.UnitTests.Services
             var result = await _service.GetOysterTypeAgeLimitsAsync();
 
             // Cast to list to make assertions.
-            var settings = result as IList<Settings> ?? result.ToList();
-
-            Assert.That(settings, Is.TypeOf<List<Settings>>());
-            Assert.That(settings.Count, Is.EqualTo(4));
+            Assert.That(result, Is.TypeOf<Dictionary<string, string>>());
+            Assert.That(result.Count, Is.EqualTo(4));
         }
     }
 }

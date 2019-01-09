@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using OysterCard.Core.Common;
+using OysterCard.Core.Contracts.Common;
 using OysterCard.Core.Contracts.Repositories;
 using OysterCard.Core.Contracts.Services;
 using OysterCard.Core.Contracts.UOW;
@@ -17,6 +19,9 @@ namespace OysterCard.Website
         /// </summary>
         public static void WireUpDependencies(this IServiceCollection services)
         {
+            // Common.
+            services.AddSingleton<IUtilities, Utilities>();
+
             // Database context.
             services.AddScoped<DbContext, OysterCardContext>();
 

@@ -14,12 +14,12 @@ namespace OysterCard.Core.Contracts.Services
         /// Gets all <see cref="Settings"/>.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Settings>> GetAllAsync();
+        Task<IDictionary<string, string>> GetAllAsync();
 
         /// <summary>
         /// Gets <see cref="OysterType"/> age limits.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Settings>> GetOysterTypeAgeLimitsAsync();
+        Task<IDictionary<string, string>> GetOysterTypeAgeLimitsAsync();
     }
 }

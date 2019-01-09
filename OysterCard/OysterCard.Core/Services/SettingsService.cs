@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using OysterCard.Core.Contracts.Services;
 using OysterCard.Core.Contracts.UOW;
-using OysterCard.Core.Models;
 
 namespace OysterCard.Core.Services
 {
@@ -15,9 +15,17 @@ namespace OysterCard.Core.Services
         public SettingsService(ISettingsUOW unitOfWork) => _unitOfWork = unitOfWork;
 
         /// <inheritdoc />
-        public async Task<IEnumerable<Settings>> GetAllAsync() => await _unitOfWork.Settings.GetAllAsync();
+        public async Task<IDictionary<string, string>> GetAllAsync()
+        {
+            var settings = await _unitOfWork.Settings.GetAllAsync();
+            return settings.ToDictionary(setting => setting.Key, setting => setting.Value);
+        }
 
         /// <inheritdoc />
-        public async Task<IEnumerable<Settings>> GetOysterTypeAgeLimitsAsync() => await _unitOfWork.Settings.GetListAsync(x => x.Key.Contains("AgeLimit"));
+        public async Task<IDictionary<string, string>> GetOysterTypeAgeLimitsAsync()
+        {
+            var settings = await _unitOfWork.Settings.GetListAsync(x => x.Key.Contains("AgeLimit"));
+            return settings.ToDictionary(setting => setting.Key, setting => setting.Value);
+        }
     }
 }

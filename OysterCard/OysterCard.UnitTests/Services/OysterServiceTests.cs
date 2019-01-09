@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
+using OysterCard.Core.Contracts.Common;
 using OysterCard.Core.Contracts.Services;
 using OysterCard.Core.Contracts.UOW;
 using OysterCard.Core.DTO;
@@ -20,6 +21,7 @@ namespace OysterCard.UnitTests.Services
     {
         private Mock<IOysterUOW> _unitOfWork;
         private Mock<ISettingsService> _settingsService;
+        private Mock<IUtilities> _utilities;
         private OysterService _service;
 
         [SetUp]
@@ -28,10 +30,11 @@ namespace OysterCard.UnitTests.Services
             // First, set up all the mappings.
             ServicesInitializer.ConfigureMappings();
 
-            // Assign a mocked unit of work and settings service to the oyster service.
+            // Assign a mocked objects to the oyster service.
             _unitOfWork = new Mock<IOysterUOW>();
             _settingsService = new Mock<ISettingsService>();
-            _service = new OysterService(_unitOfWork.Object, _settingsService.Object);
+            _utilities = new Mock<IUtilities>();
+            _service = new OysterService(_unitOfWork.Object, _settingsService.Object, _utilities.Object);
         }
 
         [Test]
@@ -181,12 +184,12 @@ namespace OysterCard.UnitTests.Services
         public void CreateNonVerifiedAsync_CreateOysterAsync_DoesNotThrowAsync()
         {
             // Set up sample data.
-            var settings = new List<Settings>
+            var settings = new Dictionary<string, string>
             {
-                new Settings { Id = 1, Key = "LowerAgeLimitJunior", Value = "0"},
-                new Settings { Id = 2, Key = "UpperAgeLimitJunior", Value = "15"},
-                new Settings { Id = 3, Key = "LowerAgeLimitAdult", Value = "16"},
-                new Settings { Id = 4, Key = "UpperAgeLimitAdult", Value = "74"}
+                {"LowerAgeLimitJunior","0"},
+                {"UpperAgeLimitJunior","15"},
+                {"LowerAgeLimitAdult","16"},
+                {"UpperAgeLimitAdult","74"}
             };
 
             var data = new OysterApplicationVM { UserId = 1, Forename = "Test1" };
@@ -197,6 +200,36 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.CompleteAsync()).Returns(Task.CompletedTask);
 
             Assert.DoesNotThrowAsync(() => _service.CreateNonVerifiedAsync(data));
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="age"></param>
+        /// <param name="initType">The type to set the sample data to, to ensure if the method fails it doesn't accidently pick the right type.</param>
+        /// <param name="actualType">The actual expected type to be returned.</param>
+        /// <returns></returns>
+        [TestCase(10, OysterType.Senior, OysterType.Junior)]
+        [TestCase(50, OysterType.Junior, OysterType.Adult)]
+        [TestCase(100, OysterType.Adult, OysterType.Senior)]
+        public async Task SetOysterTypeAsync_CheckIfCorrectOysterTypeIsReturned_ReturnsCorrectOysterType(int age, OysterType initType, OysterType actualType)
+        {
+            // Set up sample data.
+            var settings = new Dictionary<string, string>
+            {
+                {"LowerAgeLimitJunior","0"},
+                {"UpperAgeLimitJunior","15"},
+                {"LowerAgeLimitAdult","16"},
+                {"UpperAgeLimitAdult","74"}
+            };
+
+            var data = new OysterApplicationVM { OysterType = initType };
+
+            // Ensure this method returns the sample data.
+            _settingsService.Setup(x => x.GetOysterTypeAgeLimitsAsync()).ReturnsAsync(settings);
+            _utilities.Setup(x => x.GetAge(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(age);
+
+            var result = await _service.GetOysterTypeAsync(data);
+            Assert.That(result, Is.EqualTo(actualType));
         }
     }
 }
