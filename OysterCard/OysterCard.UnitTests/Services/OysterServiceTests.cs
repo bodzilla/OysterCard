@@ -205,7 +205,8 @@ namespace OysterCard.UnitTests.Services
         /// <summary>
         /// </summary>
         /// <param name="age"></param>
-        /// <param name="initType">The type to set the sample data to, to ensure if the method fails it doesn't accidently pick the right type.</param>
+        /// <param name="initType">The type to set the sample data to.
+        /// Ensuring that if the method fails, it doesn't accidently default to the correct type, and thus wrongfully passing the test.</param>
         /// <param name="actualType">The actual expected type to be returned.</param>
         /// <returns></returns>
         [TestCase(10, OysterType.Senior, OysterType.Junior)]
