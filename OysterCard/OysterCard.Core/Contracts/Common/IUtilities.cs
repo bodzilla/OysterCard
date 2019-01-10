@@ -12,8 +12,8 @@ namespace OysterCard.Core.Contracts.Common
         /// Calculate the age based on date passed in.
         /// </summary>
         /// <param name="dateOfBirth">The date of birth.</param>
-        /// <param name="currentDateTime">The date to compare agaisnt. if empty, then use <see cref="DateTime.Now"/>.</param>
+        /// <param name="fromDateTime">The date to compare agaisnt. if empty, then use <see cref="DateTime.Now"/>.</param>
         /// <returns></returns>
-        int GetAge(DateTime dateOfBirth, [Optional] DateTime currentDateTime);
+        int GetAge(DateTime dateOfBirth, [Optional] DateTime fromDateTime);
     }
 }
