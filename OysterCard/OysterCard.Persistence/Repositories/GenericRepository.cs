@@ -27,16 +27,16 @@ namespace OysterCard.Persistence.Repositories
         #region Asynchronous Methods
 
         /// <inheritdoc />
-        public virtual async Task AddAsync(params T[] entities)
+        public async Task AddAsync(params T[] entities)
         {
             foreach (T entity in entities) await Context.Set<T>().AddAsync(entity);
         }
 
         /// <inheritdoc />
-        public virtual async Task<bool> ExistsAsync(Expression<Func<T, bool>> where) => await GetAsync(where) != null;
+        public async Task<bool> ExistsAsync(Expression<Func<T, bool>> where) => await GetAsync(where) != null;
 
         /// <inheritdoc />
-        public virtual async Task<T> GetAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] navigationProperties)
+        public async Task<T> GetAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] navigationProperties)
         {
             IQueryable<T> query = Context.Set<T>();
             query = navigationProperties.Aggregate(query, (current, navigationProperty) => current.Include(navigationProperty));
@@ -66,16 +66,16 @@ namespace OysterCard.Persistence.Repositories
         #region Synchronous Methods
 
         /// <inheritdoc />
-        public virtual void Add(params T[] entities)
+        public void Add(params T[] entities)
         {
             foreach (T entity in entities) Context.Set<T>().Add(entity);
         }
 
         /// <inheritdoc />
-        public virtual bool Exists(Expression<Func<T, bool>> where) => Get(where) != null;
+        public bool Exists(Expression<Func<T, bool>> where) => Get(where) != null;
 
         /// <inheritdoc />
-        public virtual T Get(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] navigationProperties)
+        public T Get(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] navigationProperties)
         {
             IQueryable<T> query = Context.Set<T>();
             query = navigationProperties.Aggregate(query, (current, navigationProperty) => current.Include(navigationProperty));
@@ -105,13 +105,13 @@ namespace OysterCard.Persistence.Repositories
         #region Universal Methods
 
         /// <inheritdoc />
-        public virtual void Remove(params T[] entities)
+        public void Remove(params T[] entities)
         {
             foreach (T entity in entities) Context.Set<T>().Remove(entity);
         }
 
         /// <inheritdoc />
-        public virtual void SetInactive(params T[] entities)
+        public void SetInactive(params T[] entities)
         {
             foreach (T entity in entities) entity.EntityActive = false;
         }

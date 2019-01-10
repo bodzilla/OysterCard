@@ -64,11 +64,7 @@ namespace OysterCard.Core.Services
             await _unitOfWork.CompleteAsync();
         }
 
-        /// <summary>
-        /// Sets the <see cref="OysterType"/> based on <see cref="OysterApplicationVM.DateOfBirth"/>.
-        /// </summary>
-        /// <param name="oysterVm"></param>
-        /// <returns></returns>
+        /// <inheritdoc />
         public async Task<OysterType> GetOysterTypeAsync(OysterApplicationVM oysterVm)
         {
             int age = _utilities.GetAge(oysterVm.DateOfBirth);

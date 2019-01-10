@@ -11,6 +11,9 @@ using OysterCard.UnitTests.Services;
 
 namespace OysterCard.UnitTests.UOW
 {
+    /// <summary>
+    /// This unit test class is to just showcase how testing can be handled for entity framework core.
+    /// </summary>
     [TestFixture]
     public class SettingsUOWTests
     {
@@ -26,8 +29,9 @@ namespace OysterCard.UnitTests.UOW
             var options = new DbContextOptionsBuilder<OysterCardContext>().UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
 #pragma warning restore 618
 
-            // Assign a mocked db context to the settings unit of work.
             var context = new OysterCardContext(options);
+
+            // Assign the mocked db context to the settings unit of work.
             _unitOfWork = new SettingsUOW(context);
         }
 
@@ -54,6 +58,7 @@ namespace OysterCard.UnitTests.UOW
             // Set up sample data.
             var data = new Settings { Key = key, Value = value };
 
+            // Act.
             await _unitOfWork.Settings.AddAsync(data);
             await _unitOfWork.CompleteAsync();
             var settings = await _unitOfWork.Settings.GetAllAsync();

@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
+using OysterCard.Core.Contracts.Services;
 using OysterCard.Core.Contracts.UOW;
 using OysterCard.Core.DTO;
 using OysterCard.Core.Models;
@@ -16,7 +17,7 @@ namespace OysterCard.UnitTests.Services
     public class UserServiceTests
     {
         private Mock<IUserUOW> _unitOfWork;
-        private UserService _service;
+        private IUserService _service;
 
         [SetUp]
         public void Setup()
@@ -58,9 +59,9 @@ namespace OysterCard.UnitTests.Services
         public async Task GetByIdAsync_GetUserDtoByIdAsync_ReturnsUserDto(int id)
         {
             // Set up sample data.
-            var data = new User {Id = id, Email = "test1@test.com" };
+            var data = new User { Id = id, Email = "test1@test.com" };
 
-            // Ensure this method returns the sample data when any param of below type is passed in.
+            // Ensure this method returns the sample data.
             _unitOfWork.Setup(x => x.Users.GetAsync(It.IsAny<Expression<Func<User, bool>>>())).ReturnsAsync(data);
 
             var result = await _service.GetByIdAsync(id);
@@ -75,7 +76,7 @@ namespace OysterCard.UnitTests.Services
             // Set up sample data.
             var data = new User { Id = 1, Email = email };
 
-            // Ensure this method returns the sample data when any param of below type is passed in.
+            // Ensure this method returns the sample data.
             _unitOfWork.Setup(x => x.Users.GetAsync(It.IsAny<Expression<Func<User, bool>>>())).ReturnsAsync(data);
 
             var result = await _service.GetByEmailAsync(email);

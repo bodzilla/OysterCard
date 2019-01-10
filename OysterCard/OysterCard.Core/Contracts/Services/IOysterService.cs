@@ -44,5 +44,12 @@ namespace OysterCard.Core.Contracts.Services
         /// <param name="oysters"></param>
         /// <returns></returns>
         Task CreateNonVerifiedAsync(params OysterApplicationVM[] oysters);
+
+        /// <summary>
+        /// Sets the <see cref="OysterType"/> based on <see cref="OysterApplicationVM.DateOfBirth"/>.
+        /// </summary>
+        /// <param name="oysterVm"></param>
+        /// <returns></returns>
+        Task<OysterType> GetOysterTypeAsync(OysterApplicationVM oysterVm);
     }
 }

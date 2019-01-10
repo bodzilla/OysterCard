@@ -22,7 +22,7 @@ namespace OysterCard.UnitTests.Services
         private Mock<IOysterUOW> _unitOfWork;
         private Mock<ISettingsService> _settingsService;
         private Mock<IUtilities> _utilities;
-        private OysterService _service;
+        private IOysterService _service;
 
         [SetUp]
         public void Setup()
@@ -30,7 +30,7 @@ namespace OysterCard.UnitTests.Services
             // First, set up all the mappings.
             ServicesInitializer.ConfigureMappings();
 
-            // Assign a mocked objects to the oyster service.
+            // Assign mocked objects to the oyster service.
             _unitOfWork = new Mock<IOysterUOW>();
             _settingsService = new Mock<ISettingsService>();
             _utilities = new Mock<IUtilities>();
@@ -194,7 +194,7 @@ namespace OysterCard.UnitTests.Services
 
             var data = new OysterApplicationVM { UserId = 1, Forename = "Test1" };
 
-            // Ensure this method returns the sample data and is completed.
+            // Ensure these methods return the sample data / completed task.
             _settingsService.Setup(x => x.GetOysterTypeAgeLimitsAsync()).ReturnsAsync(settings);
             _unitOfWork.Setup(x => x.Oysters.AddAsync(It.IsAny<Oyster[]>())).Returns(Task.CompletedTask);
             _unitOfWork.Setup(x => x.CompleteAsync()).Returns(Task.CompletedTask);
@@ -224,7 +224,7 @@ namespace OysterCard.UnitTests.Services
 
             var data = new OysterApplicationVM { OysterType = initType };
 
-            // Ensure this method returns the sample data.
+            // Ensure these methods return the sample data.
             _settingsService.Setup(x => x.GetOysterTypeAgeLimitsAsync()).ReturnsAsync(settings);
             _utilities.Setup(x => x.GetAge(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(age);
 

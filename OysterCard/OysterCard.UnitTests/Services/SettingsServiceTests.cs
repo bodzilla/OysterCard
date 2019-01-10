@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
+using OysterCard.Core.Contracts.Services;
 using OysterCard.Core.Contracts.UOW;
 using OysterCard.Core.Models;
 using OysterCard.Core.Services;
@@ -14,7 +15,7 @@ namespace OysterCard.UnitTests.Services
     public class SettingsServiceTests
     {
         private Mock<ISettingsUOW> _unitOfWork;
-        private SettingsService _service;
+        private ISettingsService _service;
 
         [SetUp]
         public void Setup()
@@ -63,8 +64,6 @@ namespace OysterCard.UnitTests.Services
                 .ReturnsAsync(data);
 
             var result = await _service.GetOysterTypeAgeLimitsAsync();
-
-            // Cast to list to make assertions.
             Assert.That(result, Is.TypeOf<Dictionary<string, string>>());
             Assert.That(result.Count, Is.EqualTo(4));
         }

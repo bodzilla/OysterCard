@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using OysterCard.Core.Contracts.Common;
 
 namespace OysterCard.Core.Common
@@ -7,7 +8,7 @@ namespace OysterCard.Core.Common
     public sealed class Utilities : IUtilities
     {
         /// <inheritdoc />
-        public int GetAge(DateTime dateOfBirth, DateTime currentDateTime)
+        public int GetAge(DateTime dateOfBirth, [Optional] DateTime currentDateTime)
         {
             // If current date hasn't been passed in, use now.
             if (currentDateTime == DateTime.MinValue) currentDateTime = DateTime.Now;
