@@ -41,9 +41,9 @@ namespace OysterCard.Core.Contracts.Services
         /// Creates <see cref="Oyster"/>s with verified state as false.
         /// Sets the <see cref="OysterType"/> based on applicant's date of brith.
         /// </summary>
-        /// <param name="oysters"></param>
+        /// <param name="oystersVm"></param>
         /// <returns></returns>
-        Task CreateNonVerifiedAsync(params OysterApplicationVM[] oysters);
+        Task CreateNonVerifiedAsync(params OysterApplicationVM[] oystersVm);
 
         /// <summary>
         /// Sets the <see cref="OysterType"/> based on <see cref="OysterApplicationVM.DateOfBirth"/>.
@@ -51,5 +51,13 @@ namespace OysterCard.Core.Contracts.Services
         /// <param name="oysterVm"></param>
         /// <returns></returns>
         Task<OysterType> GetOysterTypeAsync(OysterApplicationVM oysterVm);
+
+        /// <summary>
+        /// Set the <see cref="OysterState"/>.
+        /// </summary>
+        /// <param name="oysterId"></param>
+        /// <param name="oysterState"></param>
+        /// <returns></returns>
+        Task UpdateOysterStateAsync(int oysterId, OysterState oysterState);
     }
 }

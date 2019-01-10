@@ -50,6 +50,7 @@ namespace OysterCard.Core.Mappings.MappingProfiles
 
         private static Oyster MapData(Oyster oyster, OysterDTO oysterDto)
         {
+            oyster.Id = oysterDto.Id;
             oyster.Forename = oysterDto.Forename;
             oyster.Surname = oysterDto.Surname;
             oyster.DateOfBirth = oysterDto.DateOfBirth;
@@ -104,7 +105,7 @@ namespace OysterCard.Core.Mappings.MappingProfiles
             oyster.UserId = oysterApplicationVm.UserId;
             return oyster;
         }
-
-        #endregion
     }
+
+    #endregion
 }

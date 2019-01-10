@@ -22,7 +22,7 @@ namespace OysterCard.UnitTests.Services
         private Mock<IOysterUOW> _unitOfWork;
         private Mock<ISettingsService> _settingsService;
         private Mock<IUtilities> _utilities;
-        private IOysterService _service;
+        private IOysterService _oysterService;
 
         [SetUp]
         public void Setup()
@@ -34,7 +34,7 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork = new Mock<IOysterUOW>();
             _settingsService = new Mock<ISettingsService>();
             _utilities = new Mock<IUtilities>();
-            _service = new OysterService(_unitOfWork.Object, _settingsService.Object, _utilities.Object);
+            _oysterService = new OysterService(_unitOfWork.Object, _settingsService.Object, _utilities.Object);
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace OysterCard.UnitTests.Services
             // Ensure this method returns the sample data.
             _unitOfWork.Setup(x => x.Oysters.GetAllAsync()).ReturnsAsync(data);
 
-            var result = await _service.GetAllAsync();
+            var result = await _oysterService.GetAllAsync();
 
             // Cast to list to make assertions.
             var oysters = result as IList<OysterDTO> ?? result.ToList();
@@ -75,7 +75,7 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.Oysters.GetListAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
                 .ReturnsAsync(data);
 
-            var result = await _service.GetListAsync(x => x.EntityActive);
+            var result = await _oysterService.GetListAsync(x => x.EntityActive);
 
             // Cast to list to make assertions.
             var oysters = result as IList<OysterDTO> ?? result.ToList();
@@ -94,7 +94,7 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
                 .ReturnsAsync(data);
 
-            var result = await _service.GetAsync(x => x.EntityActive);
+            var result = await _oysterService.GetAsync(x => x.EntityActive);
 
             Assert.That(result, Is.TypeOf<OysterDTO>());
             Assert.That(result.OysterType, Is.EqualTo(OysterType.Junior));
@@ -110,7 +110,7 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
                 .ReturnsAsync(data);
 
-            var result = await _service.GetAsync(x => x.EntityActive);
+            var result = await _oysterService.GetAsync(x => x.EntityActive);
 
             Assert.That(result, Is.TypeOf<OysterDTO>());
             Assert.That(result.OysterType, Is.EqualTo(OysterType.Adult));
@@ -126,7 +126,7 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
                 .ReturnsAsync(data);
 
-            var result = await _service.GetAsync(x => x.EntityActive);
+            var result = await _oysterService.GetAsync(x => x.EntityActive);
 
             Assert.That(result, Is.TypeOf<OysterDTO>());
             Assert.That(result.OysterType, Is.EqualTo(OysterType.Senior));
@@ -142,7 +142,7 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
                 .ReturnsAsync(data);
 
-            var result = await _service.GetAsync(x => x.EntityActive);
+            var result = await _oysterService.GetAsync(x => x.EntityActive);
 
             Assert.That(result, Is.TypeOf<OysterDTO>());
             Assert.That(result.OysterType, Is.Not.EqualTo(OysterType.Junior));
@@ -158,7 +158,7 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
                 .ReturnsAsync(data);
 
-            var result = await _service.GetAsync(x => x.EntityActive);
+            var result = await _oysterService.GetAsync(x => x.EntityActive);
 
             Assert.That(result, Is.TypeOf<OysterDTO>());
             Assert.That(result.OysterType, Is.Not.EqualTo(OysterType.Adult));
@@ -174,7 +174,7 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
                 .ReturnsAsync(data);
 
-            var result = await _service.GetAsync(x => x.EntityActive);
+            var result = await _oysterService.GetAsync(x => x.EntityActive);
 
             Assert.That(result, Is.TypeOf<OysterDTO>());
             Assert.That(result.OysterType, Is.Not.EqualTo(OysterType.Senior));
@@ -199,7 +199,7 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.Oysters.AddAsync(It.IsAny<Oyster[]>())).Returns(Task.CompletedTask);
             _unitOfWork.Setup(x => x.CompleteAsync()).Returns(Task.CompletedTask);
 
-            Assert.DoesNotThrowAsync(() => _service.CreateNonVerifiedAsync(data));
+            Assert.DoesNotThrowAsync(() => _oysterService.CreateNonVerifiedAsync(data));
         }
 
         /// <summary>
@@ -229,8 +229,13 @@ namespace OysterCard.UnitTests.Services
             _settingsService.Setup(x => x.GetOysterTypeAgeLimitsAsync()).ReturnsAsync(settings);
             _utilities.Setup(x => x.GetAge(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(age);
 
-            var result = await _service.GetOysterTypeAsync(data);
+            var result = await _oysterService.GetOysterTypeAsync(data);
             Assert.That(result, Is.EqualTo(actualType));
+        }
+
+        public async Task SetOysterState_ChangedFromInReviewToApproved_ReturnsCorrectChange()
+        {
+            
         }
     }
 }

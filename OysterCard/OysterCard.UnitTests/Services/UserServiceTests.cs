@@ -17,7 +17,7 @@ namespace OysterCard.UnitTests.Services
     public class UserServiceTests
     {
         private Mock<IUserUOW> _unitOfWork;
-        private IUserService _service;
+        private IUserService _userService;
 
         [SetUp]
         public void Setup()
@@ -27,7 +27,7 @@ namespace OysterCard.UnitTests.Services
 
             // Assign a mocked unit of work to the user service.
             _unitOfWork = new Mock<IUserUOW>();
-            _service = new UserService(_unitOfWork.Object);
+            _userService = new UserService(_unitOfWork.Object);
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace OysterCard.UnitTests.Services
             // Ensure this method returns the sample data.
             _unitOfWork.Setup(x => x.Users.GetAllAsync()).ReturnsAsync(data);
 
-            var result = await _service.GetAllAsync();
+            var result = await _userService.GetAllAsync();
 
             // Cast to list to make assertions.
             var users = result as IList<UserDTO> ?? result.ToList();
@@ -64,7 +64,7 @@ namespace OysterCard.UnitTests.Services
             // Ensure this method returns the sample data.
             _unitOfWork.Setup(x => x.Users.GetAsync(It.IsAny<Expression<Func<User, bool>>>())).ReturnsAsync(data);
 
-            var result = await _service.GetByIdAsync(id);
+            var result = await _userService.GetByIdAsync(id);
             Assert.That(result, Is.TypeOf<UserDTO>());
         }
 
@@ -79,7 +79,7 @@ namespace OysterCard.UnitTests.Services
             // Ensure this method returns the sample data.
             _unitOfWork.Setup(x => x.Users.GetAsync(It.IsAny<Expression<Func<User, bool>>>())).ReturnsAsync(data);
 
-            var result = await _service.GetByEmailAsync(email);
+            var result = await _userService.GetByEmailAsync(email);
             Assert.That(result, Is.TypeOf<UserDTO>());
         }
     }

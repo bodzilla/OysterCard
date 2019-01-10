@@ -15,7 +15,7 @@ namespace OysterCard.UnitTests.Services
     public class SettingsServiceTests
     {
         private Mock<ISettingsUOW> _unitOfWork;
-        private ISettingsService _service;
+        private ISettingsService _settingsService;
 
         [SetUp]
         public void Setup()
@@ -25,7 +25,7 @@ namespace OysterCard.UnitTests.Services
 
             // Assign a mocked unit of work to the settings service.
             _unitOfWork = new Mock<ISettingsUOW>();
-            _service = new SettingsService(_unitOfWork.Object);
+            _settingsService = new SettingsService(_unitOfWork.Object);
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace OysterCard.UnitTests.Services
             // Ensure this method returns the sample data.
             _unitOfWork.Setup(x => x.Settings.GetAllAsync()).ReturnsAsync(data);
 
-            var result = await _service.GetAllAsync();
+            var result = await _settingsService.GetAllAsync();
             Assert.That(result, Is.TypeOf<Dictionary<string, string>>());
             Assert.That(result.Count, Is.EqualTo(3));
         }
@@ -63,7 +63,7 @@ namespace OysterCard.UnitTests.Services
             _unitOfWork.Setup(x => x.Settings.GetListAsync(It.IsAny<Expression<Func<Settings, bool>>>(), It.IsAny<Expression<Func<Settings, object>>[]>()))
                 .ReturnsAsync(data);
 
-            var result = await _service.GetOysterTypeAgeLimitsAsync();
+            var result = await _settingsService.GetOysterTypeAgeLimitsAsync();
             Assert.That(result, Is.TypeOf<Dictionary<string, string>>());
             Assert.That(result.Count, Is.EqualTo(4));
         }

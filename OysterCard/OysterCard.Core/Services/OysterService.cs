@@ -86,5 +86,13 @@ namespace OysterCard.Core.Services
             if (age >= lowerAgeLimitAdult && age <= upperAgeLimitAdult) return OysterType.Adult;
             return OysterType.Senior;
         }
+
+        /// <inheritdoc />
+        public async Task UpdateOysterStateAsync(int oysterId, OysterState oysterState)
+        {
+            var oyster = await _unitOfWork.Oysters.GetAsync(x => x.Id == oysterId);
+            oyster.OysterState = oysterState;
+            await _unitOfWork.CompleteAsync();
+        }
     }
 }
