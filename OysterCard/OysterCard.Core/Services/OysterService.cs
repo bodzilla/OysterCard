@@ -59,6 +59,8 @@ namespace OysterCard.Core.Services
                 // Assess what oyster type the applicant qualifies for.
                 oysterVm.OysterType = await GetOysterTypeAsync(oysterVm);
 
+                // We don't need to set the oyster state as the default value is: in review.
+                // So we can go ahead and create.
                 await _unitOfWork.Oysters.AddAsync(Mapper.Map<Oyster>(oysterVm));
             }
             await _unitOfWork.CompleteAsync();

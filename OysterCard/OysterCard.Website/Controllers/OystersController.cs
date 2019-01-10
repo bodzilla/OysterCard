@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OysterCard.Core.Contracts.Services;
+using OysterCard.Core.Enums;
 using OysterCard.Core.ViewModels;
 using SmartBreadcrumbs;
 
@@ -23,18 +24,18 @@ namespace OysterCard.Website.Controllers
         public IActionResult Index() => RedirectToAction("Dashboard");
 
         /// <summary>
-        /// Get user's active and verified oysters.
+        /// Get user's active and approved oysters.
         /// </summary>
         /// <returns></returns>
         [DefaultBreadcrumb("Dashboard")]
         public async Task<IActionResult> Dashboard()
         {
-            var activeAndVerifiedOysters = await _oysterService.GetListAsync(x =>
+            var activeAndApprovedOysters = await _oysterService.GetListAsync(x =>
             x.UserId == int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))
             && x.EntityActive
-            && x.Verified);
+            && x.OysterState == OysterState.Approved);
 
-            return View(activeAndVerifiedOysters.OrderByDescending(x => x.EntityCreated));
+            return View(activeAndApprovedOysters.OrderByDescending(x => x.EntityCreated));
         }
 
         [Breadcrumb("Apply for an Oyster")]
@@ -57,19 +58,19 @@ namespace OysterCard.Website.Controllers
         }
 
         /// <summary>
-        /// Get user's active and non-verified oysters.
+        /// Get user's active and non-approved oysters.
         /// </summary>
         /// <returns></returns>
         [Breadcrumb("Oyster applications")]
         public async Task<IActionResult> Applications(bool applicationSubmitted)
         {
-            var activeAndNonVerifiedOysters = await _oysterService.GetListAsync(x =>
+            var activeAndNonApprovedOysters = await _oysterService.GetListAsync(x =>
             x.UserId == int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))
             && x.EntityActive
-            && !x.Verified);
+            && x.OysterState != OysterState.Approved);
 
             ViewData["ApplicationSubmitted"] = applicationSubmitted;
-            return View(activeAndNonVerifiedOysters.OrderByDescending(x => x.EntityCreated));
+            return View(activeAndNonApprovedOysters.OrderByDescending(x => x.EntityCreated));
         }
     }
 }

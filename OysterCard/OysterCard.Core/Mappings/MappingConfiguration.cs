@@ -14,6 +14,7 @@ namespace OysterCard.Core.Mappings
             {
                 config.AddProfile(new UserProfile());
                 config.AddProfile(new OysterProfile());
+                config.ValidateInlineMaps = true;
             });
         }
     }

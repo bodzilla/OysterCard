@@ -61,6 +61,11 @@ namespace OysterCard.Core.Models
         public OysterType OysterType { get; protected set; }
 
         /// <summary>
+        /// The oyster state.
+        /// </summary>
+        public OysterState OysterState { get; set; }
+
+        /// <summary>
         /// The rate of cost for each travel.
         /// </summary>
         public decimal Rate { get; protected set; }
@@ -70,12 +75,6 @@ namespace OysterCard.Core.Models
         /// Has a default starting balance of 0.
         /// </summary>
         public decimal Balance { get; set; }
-
-        /// <summary>
-        /// The oyster's verification state.
-        /// Has a default setting of false.
-        /// </summary>
-        public bool Verified { get; set; }
 
         /// <summary>
         /// The id of the associated <see cref="Models.User"/> for this oyster.

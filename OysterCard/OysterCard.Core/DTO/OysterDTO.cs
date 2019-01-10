@@ -29,6 +29,8 @@ namespace OysterCard.Core.DTO
 
         public OysterType OysterType { get; set; }
 
+        public OysterState OysterState { get; set; }
+
         public decimal Rate { get; set; }
 
         public decimal Balance { get; set; }

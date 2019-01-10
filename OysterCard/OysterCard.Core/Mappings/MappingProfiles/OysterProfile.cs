@@ -13,6 +13,7 @@ namespace OysterCard.Core.Mappings.MappingProfiles
         /// <inheritdoc />
         public OysterProfile()
         {
+            CreateMap<Oyster, OysterDTO>();
             CreateMap<OysterDTO, Oyster>().ConvertUsing(new OysterDtoConverter());
             CreateMap<OysterApplicationVM, Oyster>().ConvertUsing(new OysterApplicationVmConverter());
         }
@@ -55,6 +56,7 @@ namespace OysterCard.Core.Mappings.MappingProfiles
             oyster.Address = oysterDto.Address;
             oyster.City = oysterDto.City;
             oyster.PostCode = oysterDto.PostCode;
+            oyster.OysterState = oysterDto.OysterState;
             oyster.UserId = oysterDto.UserId;
             return oyster;
         }
@@ -104,6 +106,5 @@ namespace OysterCard.Core.Mappings.MappingProfiles
         }
 
         #endregion
-
     }
 }

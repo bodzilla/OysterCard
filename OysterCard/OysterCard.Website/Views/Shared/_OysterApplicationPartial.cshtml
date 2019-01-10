@@ -1,4 +1,5 @@
-﻿@model OysterCard.Core.DTO.OysterDTO
+﻿@using OysterCard.Core.Enums
+@model OysterCard.Core.DTO.OysterDTO
 
 <div class="col-md-4 col-xs-6 my-3">
     <div class="card shadow-sm">
@@ -13,11 +14,29 @@
             <li class="list-group-item">£@Model.Rate per journey</li>
         </ul>
         <div class="card-body">
-            <!--TODO: Add status badge to Oyster -->
-            <!--TODO: Cancelled, In review, Declined -->
-            <p><span class="badge badge-info">In review</span></p>
+            @if (Model.OysterState == OysterState.InReview)
+            {
+                <p>
+                    <span class="badge badge-info">In review</span>
+                </p>
+            }
+            else if (Model.OysterState == OysterState.Withdrawn)
+            {
+                <p>
+                    <span class="badge badge-dark">Withdrawn</span>
+                </p>
+            }
+            else if (Model.OysterState == OysterState.Declined)
+            {
+                <p>
+                    <span class="badge badge-danger">Declined</span>
+                </p>
+            }
             <p class="card-text"><small class="text-muted">Applied on @Model.EntityCreated.ToLongDateString()</small></p>
-            <a href="#">Withdraw application</a>
+            @if (Model.OysterState == OysterState.InReview)
+            {
+                <a href="#">Withdraw application</a>
+            }
         </div>
     </div>
 </div>

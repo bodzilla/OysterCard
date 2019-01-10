@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using OysterCard.Core.Enums;
 using OysterCard.Core.Models;
 
 namespace OysterCard.Persistence.Configurations
@@ -38,7 +39,7 @@ namespace OysterCard.Persistence.Configurations
 
             builder.Property(x => x.Balance).HasDefaultValue(0);
 
-            builder.Property(x => x.Verified).HasDefaultValue(false);
+            builder.Property(x => x.OysterState).HasDefaultValue(OysterState.InReview);
 
             // Oyster rate precision and scale.
             // Scale: max £9.
