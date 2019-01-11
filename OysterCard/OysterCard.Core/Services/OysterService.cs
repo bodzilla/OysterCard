@@ -90,8 +90,7 @@ namespace OysterCard.Core.Services
         /// <inheritdoc />
         public async Task UpdateOysterStateAsync(int oysterId, OysterState oysterState)
         {
-            var oyster = await _unitOfWork.Oysters.GetAsync(x => x.Id == oysterId);
-            oyster.OysterState = oysterState;
+            await _unitOfWork.Oysters.UpdateOysterStateAsync(oysterId, oysterState);
             await _unitOfWork.CompleteAsync();
         }
     }

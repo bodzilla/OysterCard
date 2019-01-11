@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using OysterCard.Core.Contracts.Repositories;
+using OysterCard.Core.Enums;
 using OysterCard.Core.Models;
 
 namespace OysterCard.Persistence.Repositories
@@ -16,6 +18,13 @@ namespace OysterCard.Persistence.Repositories
         public OysterRepository(DbContext context)
             : base(context)
         {
+        }
+
+        /// <inheritdoc />
+        public async Task UpdateOysterStateAsync(int oysterId, OysterState oysterState)
+        {
+            var oyster = await Context.FindAsync<Oyster>(oysterId);
+            oyster.OysterState = oysterState;
         }
     }
 }
