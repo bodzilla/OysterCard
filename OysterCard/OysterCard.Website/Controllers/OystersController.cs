@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,18 +9,13 @@ using SmartBreadcrumbs;
 namespace OysterCard.Website.Controllers
 {
     [Authorize]
-    public class OystersController : Controller
+    public class OystersController : BaseController
     {
-        private readonly int _userId;
         private readonly IOysterService _oysterService;
 
         #region Default Constructor
 
-        public OystersController(IOysterService oysterService)
-        {
-            _userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            _oysterService = oysterService;
-        }
+        public OystersController(IOysterService oysterService) => _oysterService = oysterService;
 
         #endregion
 
@@ -34,7 +28,7 @@ namespace OysterCard.Website.Controllers
         [DefaultBreadcrumb("Dashboard")]
         public async Task<IActionResult> Dashboard()
         {
-            var oysters = await _oysterService.GetActiveAndApprovedAsync(_userId);
+            var oysters = await _oysterService.GetActiveAndApprovedAsync(UserId);
             return View(oysters.OrderByDescending(x => x.EntityCreated));
         }
 
@@ -50,7 +44,7 @@ namespace OysterCard.Website.Controllers
         {
             if (!ModelState.IsValid) return View("Apply");
 
-            oyster.UserId = _userId;
+            oyster.UserId = UserId;
 
             // Do not need to set the oyster type for this object as this method will handle this.
             await _oysterService.CreateNonVerifiedAsync(oyster);
@@ -65,7 +59,7 @@ namespace OysterCard.Website.Controllers
         [Breadcrumb("Oyster applications")]
         public async Task<IActionResult> Applications(bool applicationSubmitted)
         {
-            var oysters = await _oysterService.GetActiveAndNonApprovedAsync(_userId);
+            var oysters = await _oysterService.GetActiveAndNonApprovedAsync(UserId);
             ViewData["ApplicationSubmitted"] = applicationSubmitted;
             return View(oysters.OrderByDescending(x => x.EntityCreated));
         }
