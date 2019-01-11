@@ -24,7 +24,7 @@ namespace OysterCard.Core.Services
         /// <inheritdoc />
         public async Task<IDictionary<string, string>> GetOysterTypeAgeLimitsAsync()
         {
-            var settings = await _unitOfWork.Settings.GetListAsync(x => x.Key.Contains("AgeLimit"));
+            var settings = await _unitOfWork.Settings.GetOysterTypeAgeLimitsAsync();
             return settings.ToDictionary(setting => setting.Key, setting => setting.Value);
         }
     }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
@@ -60,8 +58,7 @@ namespace OysterCard.UnitTests.Services
                 };
 
             // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Settings.GetListAsync(It.IsAny<Expression<Func<Settings, bool>>>(), It.IsAny<Expression<Func<Settings, object>>[]>()))
-                .ReturnsAsync(data);
+            _unitOfWork.Setup(x => x.Settings.GetOysterTypeAgeLimitsAsync()).ReturnsAsync(data);
 
             var result = await _settingsService.GetOysterTypeAgeLimitsAsync();
             Assert.That(result, Is.TypeOf<Dictionary<string, string>>());

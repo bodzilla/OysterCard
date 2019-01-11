@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using OysterCard.Core.Contracts.Repositories;
 using OysterCard.Core.Models;
 
@@ -17,5 +19,8 @@ namespace OysterCard.Persistence.Repositories
             : base(context)
         {
         }
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<Settings>> GetOysterTypeAgeLimitsAsync() => await GetListAsync(x => x.Key.Contains("AgeLimit"));
     }
 }
