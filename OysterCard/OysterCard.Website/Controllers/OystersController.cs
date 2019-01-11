@@ -9,7 +9,7 @@ using SmartBreadcrumbs;
 namespace OysterCard.Website.Controllers
 {
     [Authorize]
-    public class OystersController : BaseController
+    public class OystersController : ControllerBase
     {
         private readonly IOysterService _oysterService;
 
