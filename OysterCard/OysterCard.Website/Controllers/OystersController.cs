@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OysterCard.Core.Contracts.Services;
-using OysterCard.Core.Enums;
 using OysterCard.Core.ViewModels;
 using SmartBreadcrumbs;
 
@@ -13,11 +12,16 @@ namespace OysterCard.Website.Controllers
     [Authorize]
     public class OystersController : Controller
     {
+        private readonly int _userId;
         private readonly IOysterService _oysterService;
 
         #region Default Constructor
 
-        public OystersController(IOysterService oysterService) => _oysterService = oysterService;
+        public OystersController(IOysterService oysterService)
+        {
+            _userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            _oysterService = oysterService;
+        }
 
         #endregion
 
@@ -30,12 +34,8 @@ namespace OysterCard.Website.Controllers
         [DefaultBreadcrumb("Dashboard")]
         public async Task<IActionResult> Dashboard()
         {
-            var activeAndApprovedOysters = await _oysterService.GetListAsync(x =>
-            x.UserId == int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))
-            && x.EntityActive
-            && x.OysterState == OysterState.Approved);
-
-            return View(activeAndApprovedOysters.OrderByDescending(x => x.EntityCreated));
+            var oysters = await _oysterService.GetActiveAndApprovedAsync(_userId);
+            return View(oysters.OrderByDescending(x => x.EntityCreated));
         }
 
         [Breadcrumb("Apply for an Oyster")]
@@ -49,7 +49,8 @@ namespace OysterCard.Website.Controllers
         public async Task<IActionResult> ApplyForOyster(OysterApplicationVM oyster)
         {
             if (!ModelState.IsValid) return View("Apply");
-            oyster.UserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)); // Set the user's id.
+
+            oyster.UserId = _userId;
 
             // Do not need to set the oyster type for this object as this method will handle this.
             await _oysterService.CreateNonVerifiedAsync(oyster);
@@ -64,13 +65,9 @@ namespace OysterCard.Website.Controllers
         [Breadcrumb("Oyster applications")]
         public async Task<IActionResult> Applications(bool applicationSubmitted)
         {
-            var activeAndNonApprovedOysters = await _oysterService.GetListAsync(x =>
-            x.UserId == int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))
-            && x.EntityActive
-            && x.OysterState != OysterState.Approved);
-
+            var oysters = await _oysterService.GetActiveAndNonApprovedAsync(_userId);
             ViewData["ApplicationSubmitted"] = applicationSubmitted;
-            return View(activeAndNonApprovedOysters.OrderByDescending(x => x.EntityCreated));
+            return View(oysters.OrderByDescending(x => x.EntityCreated));
         }
     }
 }

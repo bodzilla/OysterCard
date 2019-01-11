@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using OysterCard.Core.DTO;
 using OysterCard.Core.Enums;
@@ -15,27 +13,21 @@ namespace OysterCard.Core.Contracts.Services
     public interface IOysterService
     {
         /// <summary>
-        /// Gets all <see cref="OysterDTO"/>.
+        /// Gets all <see cref="Oyster"/>s.
         /// </summary>
-        /// <param name="navigationProperties"></param>
-        /// <returns></returns>
-        Task<IEnumerable<OysterDTO>> GetAllAsync(params Expression<Func<Oyster, object>>[] navigationProperties);
+        Task<IEnumerable<OysterDTO>> GetAllAsync();
 
         /// <summary>
-        /// Get list of <see cref="OysterDTO"/> with where condition.
+        /// Gets <see cref="User"/>s active and approved <see cref="Oyster"/>s.
         /// </summary>
-        /// <param name="where"></param>
-        /// <param name="navigationProperties"></param>
-        /// <returns></returns>
-        Task<IEnumerable<OysterDTO>> GetListAsync(Expression<Func<Oyster, bool>> where, params Expression<Func<Oyster, object>>[] navigationProperties);
+        /// <param name="userId"></param>
+        Task<IEnumerable<OysterDTO>> GetActiveAndApprovedAsync(int userId);
 
         /// <summary>
-        /// Get <see cref="OysterDTO"/> with where condition.
+        /// Gets <see cref="User"/>s active and non-approved <see cref="Oyster"/>s.
         /// </summary>
-        /// <param name="where"></param>
-        /// <param name="navigationProperties"></param>
-        /// <returns></returns>
-        Task<OysterDTO> GetAsync(Expression<Func<Oyster, bool>> where, params Expression<Func<Oyster, object>>[] navigationProperties);
+        /// <param name="userId"></param>
+        Task<IEnumerable<OysterDTO>> GetActiveAndNonApprovedAsync(int userId);
 
         /// <summary>
         /// Creates <see cref="Oyster"/>s with verified state as false.

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using OysterCard.Core.Contracts.Common;
@@ -29,26 +28,24 @@ namespace OysterCard.Core.Services
             _utilities = utilities;
         }
 
-        /// <param name="navigationProperties"></param>
-        /// <inheritdoc />
-        public async Task<IEnumerable<OysterDTO>> GetAllAsync(params Expression<Func<Oyster, object>>[] navigationProperties)
+        public async Task<IEnumerable<OysterDTO>> GetAllAsync()
         {
-            var oysters = await _unitOfWork.Oysters.GetAllAsync(navigationProperties);
+            var oysters = await _unitOfWork.Oysters.GetAllAsync();
             return oysters.Select(Mapper.Map<Oyster, OysterDTO>);
         }
 
         /// <inheritdoc />
-        public async Task<IEnumerable<OysterDTO>> GetListAsync(Expression<Func<Oyster, bool>> where, params Expression<Func<Oyster, object>>[] navigationProperties)
+        public async Task<IEnumerable<OysterDTO>> GetActiveAndApprovedAsync(int userId)
         {
-            var oysters = await _unitOfWork.Oysters.GetListAsync(where, navigationProperties);
+            var oysters = await _unitOfWork.Oysters.GetActiveAndApprovedOystersAsync(userId);
             return oysters.Select(Mapper.Map<Oyster, OysterDTO>);
         }
 
         /// <inheritdoc />
-        public async Task<OysterDTO> GetAsync(Expression<Func<Oyster, bool>> where, params Expression<Func<Oyster, object>>[] navigationProperties)
+        public async Task<IEnumerable<OysterDTO>> GetActiveAndNonApprovedAsync(int userId)
         {
-            var oyster = await _unitOfWork.Oysters.GetAsync(where, navigationProperties);
-            return Mapper.Map<OysterDTO>(oyster);
+            var oysters = await _unitOfWork.Oysters.GetActiveAndNonApprovedOystersAsync(userId);
+            return oysters.Select(Mapper.Map<Oyster, OysterDTO>);
         }
 
         /// <inheritdoc />

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
@@ -61,21 +60,21 @@ namespace OysterCard.UnitTests.Services
         }
 
         [Test]
-        public async Task GetListAsync_GetListOfOysterDtoAsync_ReturnsThreeOysterDto()
+        public async Task GetActiveAndApprovedOystersAsync_GetListOfOysterDtoAsync_ReturnsThreeOysterDto()
         {
             // Set up sample data.
             var data = new List<Oyster>
             {
-                new OysterAdult { Id = 1, Forename = "Test1" },
-                new OysterJunior { Id = 2, Forename = "Test2" },
-                new OysterSenior { Id = 3, Forename = "Test3" }
+                new OysterAdult { Id = 1, OysterState = OysterState.Approved},
+                new OysterJunior { Id = 2, OysterState = OysterState.Approved },
+                new OysterSenior { Id = 3, OysterState = OysterState.Approved }
             };
 
             // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetListAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
+            _unitOfWork.Setup(x => x.Oysters.GetActiveAndApprovedOystersAsync(It.IsAny<int>()))
                 .ReturnsAsync(data);
 
-            var result = await _oysterService.GetListAsync(x => x.EntityActive);
+            var result = await _oysterService.GetActiveAndApprovedAsync(1);
 
             // Cast to list to make assertions.
             var oysters = result as IList<OysterDTO> ?? result.ToList();
@@ -85,99 +84,27 @@ namespace OysterCard.UnitTests.Services
         }
 
         [Test]
-        public async Task GetAsync_GetOysterDtoJuniorAsync_ReturnsOysterDtoJunior()
+        public async Task GetActiveAndNonApprovedOystersAsync_GetListOfOysterDtoAsync_ReturnsThreeOysterDto()
         {
             // Set up sample data.
-            var data = new OysterJunior { Id = 1, Forename = "Test1" };
+            var data = new List<Oyster>
+            {
+                new OysterAdult { Id = 1, OysterState = OysterState.Approved},
+                new OysterJunior { Id = 2, OysterState = OysterState.Approved },
+                new OysterSenior { Id = 3, OysterState = OysterState.Approved }
+            };
 
             // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
+            _unitOfWork.Setup(x => x.Oysters.GetActiveAndNonApprovedOystersAsync(It.IsAny<int>()))
                 .ReturnsAsync(data);
 
-            var result = await _oysterService.GetAsync(x => x.EntityActive);
+            var result = await _oysterService.GetActiveAndNonApprovedAsync(1);
 
-            Assert.That(result, Is.TypeOf<OysterDTO>());
-            Assert.That(result.OysterType, Is.EqualTo(OysterType.Junior));
-        }
+            // Cast to list to make assertions.
+            var oysters = result as IList<OysterDTO> ?? result.ToList();
 
-        [Test]
-        public async Task GetAsync_GetOysterDtoAdultAsync_ReturnsOysterDtoAdult()
-        {
-            // Set up sample data.
-            var data = new OysterAdult { Id = 1, Forename = "Test1" };
-
-            // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
-                .ReturnsAsync(data);
-
-            var result = await _oysterService.GetAsync(x => x.EntityActive);
-
-            Assert.That(result, Is.TypeOf<OysterDTO>());
-            Assert.That(result.OysterType, Is.EqualTo(OysterType.Adult));
-        }
-
-        [Test]
-        public async Task GetAsync_GetOysterDtoSeniorAsync_ReturnsOysterDtoSenior()
-        {
-            // Set up sample data.
-            var data = new OysterSenior { Id = 1, Forename = "Test1" };
-
-            // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
-                .ReturnsAsync(data);
-
-            var result = await _oysterService.GetAsync(x => x.EntityActive);
-
-            Assert.That(result, Is.TypeOf<OysterDTO>());
-            Assert.That(result.OysterType, Is.EqualTo(OysterType.Senior));
-        }
-
-        [Test]
-        public async Task GetAsync_GetOysterDtoJuniorAsync_ReturnsOysterDtoAsWrongOysterType()
-        {
-            // Set up sample data.
-            var data = new OysterAdult { Id = 1, Forename = "Test1" };
-
-            // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
-                .ReturnsAsync(data);
-
-            var result = await _oysterService.GetAsync(x => x.EntityActive);
-
-            Assert.That(result, Is.TypeOf<OysterDTO>());
-            Assert.That(result.OysterType, Is.Not.EqualTo(OysterType.Junior));
-        }
-
-        [Test]
-        public async Task GetAsync_GetOysterDtoAdultAsync_ReturnsOysterDtoAsWrongOysterType()
-        {
-            // Set up sample data.
-            var data = new OysterSenior { Id = 1, Forename = "Test1" };
-
-            // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
-                .ReturnsAsync(data);
-
-            var result = await _oysterService.GetAsync(x => x.EntityActive);
-
-            Assert.That(result, Is.TypeOf<OysterDTO>());
-            Assert.That(result.OysterType, Is.Not.EqualTo(OysterType.Adult));
-        }
-
-        [Test]
-        public async Task GetAsync_GetOysterDtoSeniorAsync_ReturnsOysterDtoAsWrongOysterType()
-        {
-            // Set up sample data.
-            var data = new OysterJunior { Id = 1, Forename = "Test1" };
-
-            // Ensure this method returns the sample data.
-            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<Expression<Func<Oyster, bool>>>(), It.IsAny<Expression<Func<Oyster, object>>[]>()))
-                .ReturnsAsync(data);
-
-            var result = await _oysterService.GetAsync(x => x.EntityActive);
-
-            Assert.That(result, Is.TypeOf<OysterDTO>());
-            Assert.That(result.OysterType, Is.Not.EqualTo(OysterType.Senior));
+            Assert.That(oysters, Is.TypeOf<List<OysterDTO>>());
+            Assert.That(oysters.Count, Is.EqualTo(3));
         }
 
         [Test]
@@ -212,7 +139,7 @@ namespace OysterCard.UnitTests.Services
         [TestCase(10, OysterType.Senior, OysterType.Junior)]
         [TestCase(50, OysterType.Junior, OysterType.Adult)]
         [TestCase(100, OysterType.Adult, OysterType.Senior)]
-        public async Task SetOysterTypeAsync_CheckIfCorrectOysterTypeIsReturned_ReturnsCorrectOysterType(int age, OysterType initType, OysterType actualType)
+        public async Task GetOysterTypeAsync_CheckIfCorrectOysterTypeIsReturned_ReturnsCorrectOysterType(int age, OysterType initType, OysterType actualType)
         {
             // Set up sample data.
             var settings = new Dictionary<string, string>
@@ -231,11 +158,6 @@ namespace OysterCard.UnitTests.Services
 
             var result = await _oysterService.GetOysterTypeAsync(data);
             Assert.That(result, Is.EqualTo(actualType));
-        }
-
-        public async Task SetOysterState_ChangedFromInReviewToApproved_ReturnsCorrectChange()
-        {
-            
         }
     }
 }

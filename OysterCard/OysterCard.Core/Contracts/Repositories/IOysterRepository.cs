@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using OysterCard.Core.Enums;
 using OysterCard.Core.Models;
 
@@ -10,6 +11,18 @@ namespace OysterCard.Core.Contracts.Repositories
     /// </summary>
     public interface IOysterRepository : IRepository<Oyster>
     {
+        /// <summary>
+        /// Gets <see cref="User"/>s active and approved <see cref="Oyster"/>s.
+        /// </summary>
+        /// <param name="userId"></param>
+        Task<IEnumerable<Oyster>> GetActiveAndApprovedOystersAsync(int userId);
+
+        /// <summary>
+        /// Gets <see cref="User"/>s active and non-approved <see cref="Oyster"/>s.
+        /// </summary>
+        /// <param name="userId"></param>
+        Task<IEnumerable<Oyster>> GetActiveAndNonApprovedOystersAsync(int userId);
+
         /// <summary>
         /// Set the <see cref="OysterState"/>.
         /// </summary>

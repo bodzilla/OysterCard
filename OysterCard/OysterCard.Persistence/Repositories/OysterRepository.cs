@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OysterCard.Core.Contracts.Repositories;
 using OysterCard.Core.Enums;
@@ -19,6 +20,14 @@ namespace OysterCard.Persistence.Repositories
             : base(context)
         {
         }
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<Oyster>> GetActiveAndApprovedOystersAsync(int userId) =>
+            await GetListAsync(x => x.EntityActive && x.OysterState == OysterState.Approved);
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<Oyster>> GetActiveAndNonApprovedOystersAsync(int userId) =>
+            await GetListAsync(x => x.EntityActive && x.OysterState != OysterState.Approved);
 
         /// <inheritdoc />
         public async Task UpdateOysterStateAsync(int oysterId, OysterState oysterState)
