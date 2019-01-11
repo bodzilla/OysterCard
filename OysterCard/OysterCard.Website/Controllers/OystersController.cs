@@ -55,6 +55,8 @@ namespace OysterCard.Website.Controllers
         /// <summary>
         /// Get user's active and non-approved oysters.
         /// </summary>
+        /// <param name="applicationSubmitted">Passed in by <see cref="ApplyForOyster"/>
+        /// to state if a new application has been submitted.</param>
         /// <returns></returns>
         [Breadcrumb("Oyster applications")]
         public async Task<IActionResult> Applications(bool applicationSubmitted)
