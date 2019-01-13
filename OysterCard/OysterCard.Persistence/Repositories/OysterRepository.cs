@@ -22,6 +22,9 @@ namespace OysterCard.Persistence.Repositories
         }
 
         /// <inheritdoc />
+        public async Task<Oyster> GetAsync(int oysterId) => await Context.FindAsync<Oyster>(oysterId);
+
+        /// <inheritdoc />
         public async Task<IEnumerable<Oyster>> GetActiveAndApprovedOystersAsync(int userId) =>
             await GetListAsync(x => x.EntityActive && x.OysterState == OysterState.Approved);
 

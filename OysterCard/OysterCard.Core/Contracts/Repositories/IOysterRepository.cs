@@ -12,6 +12,13 @@ namespace OysterCard.Core.Contracts.Repositories
     public interface IOysterRepository : IRepository<Oyster>
     {
         /// <summary>
+        /// Get <see cref="Oyster"/> by id.
+        /// </summary>
+        /// <param name="oysterId"></param>
+        /// <returns></returns>
+        Task<Oyster> GetAsync(int oysterId);
+
+        /// <summary>
         /// Gets <see cref="User"/>s active and approved <see cref="Oyster"/>s.
         /// </summary>
         /// <param name="userId"></param>

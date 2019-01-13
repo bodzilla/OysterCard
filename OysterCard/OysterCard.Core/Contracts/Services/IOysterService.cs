@@ -18,6 +18,11 @@ namespace OysterCard.Core.Contracts.Services
         Task<IEnumerable<OysterDTO>> GetAllAsync();
 
         /// <summary>
+        /// Get a single <see cref="Oyster"/>.
+        /// </summary>
+        Task<OysterApplicationVM> GetAsync(int id);
+
+        /// <summary>
         /// Gets <see cref="User"/>s active and approved <see cref="Oyster"/>s.
         /// </summary>
         /// <param name="userId"></param>

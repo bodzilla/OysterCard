@@ -34,6 +34,12 @@ namespace OysterCard.Core.Services
             return oysters.Select(Mapper.Map<Oyster, OysterDTO>);
         }
 
+        public async Task<OysterApplicationVM> GetAsync(int id)
+        {
+            var oyster = await _unitOfWork.Oysters.GetAsync(id);
+            return Mapper.Map<OysterApplicationVM>(oyster);
+        }
+
         /// <inheritdoc />
         public async Task<IEnumerable<OysterDTO>> GetActiveAndApprovedAsync(int userId)
         {

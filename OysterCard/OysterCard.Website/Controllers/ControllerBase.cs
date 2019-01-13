@@ -9,6 +9,6 @@ namespace OysterCard.Website.Controllers
     /// </summary>
     public class ControllerBase : Controller
     {
-        protected int UserId => int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        public int UserId => int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
     }
 }

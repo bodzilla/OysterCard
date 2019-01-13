@@ -65,5 +65,16 @@ namespace OysterCard.Website.Controllers
             ViewData["ApplicationSubmitted"] = applicationSubmitted;
             return View(oysters.OrderByDescending(x => x.EntityCreated));
         }
+
+        /// <summary>
+        /// Update an oyster application.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> Edit(int id)
+        {
+            var oyster = await _oysterService.GetAsync(id);
+            return View(oyster);
+        }
     }
 }
