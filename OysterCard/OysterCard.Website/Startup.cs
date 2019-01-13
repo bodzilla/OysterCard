@@ -58,7 +58,12 @@ namespace OysterCard.Website
             });
 
             // Configure site options.
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+
+                // Prevents circular referencing loop when returning web api responses which include children objects.
+                .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddRouting(options => options.LowercaseUrls = true);
             services.UseBreadcrumbs(GetType().Assembly);
 
@@ -66,6 +71,7 @@ namespace OysterCard.Website
             services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme, options =>
             {
                 options.LoginPath = "/Identity/Account/Signin";
+                options.LogoutPath = "/Identity/Account/Signout";
             });
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
