@@ -62,6 +62,7 @@ namespace OysterCard.Core.Services
             foreach (var oysterVm in oystersVm)
             {
                 // Assess what oyster type the applicant qualifies for.
+                // We set the type here because the oyster class cannot publically set the type.
                 oysterVm.OysterType = await GetOysterTypeAsync(oysterVm);
 
                 // We don't need to set the oyster state as the default value is: in review.
