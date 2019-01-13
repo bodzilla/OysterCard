@@ -59,6 +59,22 @@ namespace OysterCard.UnitTests.Services
             Assert.That(oysters.Count, Is.EqualTo(3));
         }
 
+        [TestCase(1)]
+        [TestCase(10)]
+        [TestCase(int.MaxValue)]
+        public async Task GetAsync_GetByIdAsync_ReturnsOysterApplicationVm(int id)
+        {
+            // Set up sample data.
+            var data = new OysterJunior { Id = id, Forename = "Test1" };
+
+            // Ensure this method returns the sample data.
+            _unitOfWork.Setup(x => x.Oysters.GetAsync(It.IsAny<int>())).ReturnsAsync(data);
+
+            var result = await _oysterService.GetAsync(id);
+
+            Assert.That(result, Is.TypeOf<OysterApplicationVM>());
+        }
+
         [Test]
         public async Task GetActiveAndApprovedOystersAsync_GetListOfOysterDtoAsync_ReturnsThreeOysterDto()
         {
