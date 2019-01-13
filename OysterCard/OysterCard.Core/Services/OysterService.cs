@@ -28,12 +28,14 @@ namespace OysterCard.Core.Services
             _utilities = utilities;
         }
 
+        /// <inheritdoc />
         public async Task<IEnumerable<OysterDTO>> GetAllAsync()
         {
             var oysters = await _unitOfWork.Oysters.GetAllAsync();
             return oysters.Select(Mapper.Map<Oyster, OysterDTO>);
         }
 
+        /// <inheritdoc />
         public async Task<OysterApplicationVM> GetAsync(int id)
         {
             var oyster = await _unitOfWork.Oysters.GetAsync(id);
