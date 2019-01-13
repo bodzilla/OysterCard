@@ -24,6 +24,7 @@ namespace OysterCard.Website
 
             // Database context.
             services.AddScoped<DbContext, OysterCardContext>();
+            services.AddScoped<OysterCardContext>();
 
             // Repositories.
             services.AddScoped<ISettingsRepository, SettingsRepository>();
