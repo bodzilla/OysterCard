@@ -26,11 +26,11 @@ namespace OysterCard.Persistence.Repositories
 
         /// <inheritdoc />
         public async Task<IEnumerable<Oyster>> GetActiveAndApprovedOystersAsync(int userId) =>
-            await GetListAsync(x => x.EntityActive && x.OysterState == OysterState.Approved);
+            await GetListAsync(x => x.EntityActive && x.UserId == userId && x.OysterState == OysterState.Approved);
 
         /// <inheritdoc />
         public async Task<IEnumerable<Oyster>> GetActiveAndNonApprovedOystersAsync(int userId) =>
-            await GetListAsync(x => x.EntityActive && x.OysterState != OysterState.Approved);
+            await GetListAsync(x => x.EntityActive && x.UserId == userId && x.OysterState != OysterState.Approved);
 
         /// <inheritdoc />
         public async Task UpdateOysterStateAsync(int oysterId, OysterState oysterState)

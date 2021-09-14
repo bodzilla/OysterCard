@@ -20,7 +20,7 @@ namespace OysterCard.Core.Services
         private readonly ISettingsService _settingsService;
         private readonly IUtilities _utilities;
 
-        /// <inheritdoc />
+        /// <inheritdoc cref="IOysterService" />
         public OysterService(IOysterUOW unitOfWork, ISettingsService settingsService, IUtilities utilities)
         {
             _unitOfWork = unitOfWork;
